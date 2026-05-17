@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/pedro/Desktop/BRENO EMAGRECIMENTO/quiz/NR>=237 && NR<=285 {printf \"%d: %s/**)",
+      "Read(//c/Users/pedro/Desktop/BRENO EMAGRECIMENTO/quiz/NR>=13 && NR<=240 {printf \"%d: %s/**)",
+      "Bash(node -e ':*)",
+      "Read(//c/Users/pedro/Desktop/BRENO EMAGRECIMENTO/quiz/NR>=420 && NR<=570 {printf \"%d: %s/**)",
+      "Bash(node _fix5.js)",
+      "Bash(node _fix7.js)"
+    ]
+  }
+}
