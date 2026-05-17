@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BWM Quiz — Admin</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F1F5F9; color: #1E293B; font-size: 14px; }
+
+    header {
+      background: #0f0f0f;
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-sq { width: 28px; height: 28px; background: #E83232; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; color: #fff; }
+    .logo-txt { font-size: 15px; font-weight: 700; letter-spacing: .04em; }
+    header h1 { font-size: 16px; font-weight: 600; color: #E2642A; flex: 1; }
+
+    .filters { display: flex; gap: 6px; }
+    .filter-btn { background: transparent; color: #94A3B8; border: 1px solid #333; border-radius: 6px; padding: 5px 12px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all .15s; }
+    .filter-btn.active, .filter-btn:hover { background: #E83232; color: #fff; border-color: #E83232; }
+    .refresh-info { font-size: 11px; color: #555; margin-left: auto; }
+
+    main { max-width: 1320px; margin: 0 auto; padding: 24px 20px; }
+
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-bottom: 24px; }
+    .card { background: #fff; border-radius: 12px; padding: 18px 16px; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
+    .card-label { font-size: 11px; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+    .card-value { font-size: 30px; font-weight: 800; color: #0F172A; line-height: 1; }
+    .card-sub { font-size: 11px; color: #94A3B8; margin-top: 3px; }
+    .card.green .card-value { color: #059669; }
+    .card.orange .card-value { color: #E2642A; }
+    .card.blue .card-value { color: #2563EB; }
+
+    .charts { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 18px; margin-bottom: 24px; }
+    @media(max-width: 900px) { .charts { grid-template-columns: 1fr; } }
+    .chart-box { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
+    .chart-box h3 { font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 14px; }
+    .chart-box canvas { max-height: 220px; }
+
+    .section-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: #0F172A; }
+    .tables-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 14px; margin-bottom: 24px; }
+    .q-table { background: #fff; border-radius: 12px; padding: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
+    .q-table h4 { font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 10px; line-height: 1.4; padding-bottom: 8px; border-bottom: 1px solid #F1F5F9; }
+    .q-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .q-bar-wrap { flex: 1; background: #F1F5F9; border-radius: 4px; height: 18px; overflow: hidden; }
+    .q-bar { height: 100%; background: #E83232; border-radius: 4px; transition: width .6s ease; min-width: 2px; }
+    .q-option-text { font-size: 11px; color: #475569; width: 130px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .q-count { font-size: 11px; font-weight: 700; color: #0F172A; width: 28px; text-align: right; flex-shrink: 0; }
+    .q-pct { font-size: 11px; color: #94A3B8; width: 34px; text-align: right; flex-shrink: 0; }
+
+    .sessions-section { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,.07); margin-bottom: 24px; overflow-x: auto; }
+    .sessions-section h3 { font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 560px; }
+    th { background: #F8FAFC; border-bottom: 1px solid #E2E8F0; padding: 8px 12px; text-align: left; font-weight: 700; color: #64748B; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+    td { padding: 8px 12px; border-bottom: 1px solid #F1F5F9; color: #334155; vertical-align: middle; }
+    tr:hover td { background: #FAFAFA; }
+
+    .badge-cta { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 10px; font-weight: 700; background: #D1FAE5; color: #065F46; }
+    .del-btn { background: none; border: 1px solid #E2E8F0; border-radius: 6px; color: #94A3B8; cursor: pointer; font-size: 12px; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; transition: all .15s; }
+    .del-btn:hover { background: #FEF2F2; border-color: #FECACA; color: #DC2626; }
+    .export-btn { background: #E83232; color: #fff; border: none; border-radius: 8px; padding: 7px 14px; font-size: 12px; font-weight: 700; cursor: pointer; margin-left: auto; transition: background .15s; }
+    .export-btn:hover { background: #C01818; }
+
+    .skeleton { background: linear-gradient(90deg,#E2E8F0 25%,#F1F5F9 50%,#E2E8F0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; height: 20px; }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+    .empty { text-align: center; color: #94A3B8; padding: 32px; font-size: 13px; }
+    .error-banner { background: #FEF2F2; border: 1px solid #FECACA; color: #DC2626; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; font-size: 12px; }
+
+    .config-form { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,.07); margin-bottom: 24px; }
+    .config-form h3 { font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+    .config-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+    .config-row input { flex: 1; min-width: 200px; padding: 8px 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 13px; }
+    .config-row label { font-size: 11px; color: #64748B; display: block; margin-bottom: 4px; }
+    .config-row button { background: #0F172A; color: #fff; border: none; border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-sq">B</div>
+    <span class="logo-txt">BWM QUIZ</span>
+  </div>
+  <h1>Dashboard Analytics</h1>
+  <div class="filters">
+    <button class="filter-btn active" data-period="today">Hoje</button>
+    <button class="filter-btn" data-period="7d">7 dias</button>
+    <button class="filter-btn" data-period="30d">30 dias</button>
+    <button class="filter-btn" data-period="all">Tudo</button>
+  </div>
+  <span class="refresh-info" id="refreshInfo">Atualiza em 60s</span>
+</header>
+
+<main>
+  <div id="errorBanner" style="display:none" class="error-banner"></div>
+
+  <div class="config-form" id="configForm">
+    <h3>⚙️ Configuração Supabase</h3>
+    <div class="config-row">
+      <div style="flex:2;min-width:200px">
+        <label>URL do Supabase</label>
+        <input type="text" id="cfgUrl" placeholder="https://xxxx.supabase.co" />
+      </div>
+      <div style="flex:3;min-width:200px">
+        <label>Chave anon (API Key)</label>
+        <input type="text" id="cfgKey" placeholder="eyJhbGciOiJ..." />
+      </div>
+      <button onclick="saveConfig()">Conectar</button>
+    </div>
+    <p style="font-size:11px;color:#94A3B8;margin-top:8px">As credenciais ficam salvas no localStorage deste navegador.</p>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="cards">
+    <div class="card">
+      <div class="card-label">Sessões</div>
+      <div class="card-value" id="v-sessions">—</div>
+      <div class="card-sub">iniciadas</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Conclusão</div>
+      <div class="card-value" id="v-completion">—</div>
+      <div class="card-sub">completaram o quiz</div>
+    </div>
+    <div class="card orange">
+      <div class="card-label">CTA</div>
+      <div class="card-value" id="v-cta">—</div>
+      <div class="card-sub">clicaram no plano</div>
+    </div>
+    <div class="card blue">
+      <div class="card-label">Mobile</div>
+      <div class="card-value" id="v-mobile">—</div>
+      <div class="card-sub">do total</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Top Perfil</div>
+      <div class="card-value" id="v-top-profile" style="font-size:18px">—</div>
+      <div class="card-sub">perfil mais comum</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts">
+    <div class="chart-box">
+      <h3>📈 Sessões por dia (últimos 14 dias)</h3>
+      <canvas id="sessionsChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>🎯 Perfis identificados</h3>
+      <canvas id="profileChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>📱 Dispositivos</h3>
+      <canvas id="devicesChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Dropout chart -->
+  <div class="chart-box" style="margin-bottom:24px">
+    <h3>🚪 Onde as pessoas saem — card mais comum de abandono</h3>
+    <canvas id="dropoutChart" style="max-height:260px"></canvas>
+  </div>
+
+  <!-- Answer distribution -->
+  <div class="section-title">📊 Distribuição de respostas por pergunta</div>
+  <div class="tables-grid" id="tablesGrid">
+    <div class="q-table"><div class="skeleton" style="width:60%;margin-bottom:12px"></div><div class="skeleton" style="margin-bottom:6px"></div><div class="skeleton" style="margin-bottom:6px"></div></div>
+    <div class="q-table"><div class="skeleton" style="width:60%;margin-bottom:12px"></div><div class="skeleton" style="margin-bottom:6px"></div><div class="skeleton" style="margin-bottom:6px"></div></div>
+    <div class="q-table"><div class="skeleton" style="width:60%;margin-bottom:12px"></div><div class="skeleton" style="margin-bottom:6px"></div><div class="skeleton" style="margin-bottom:6px"></div></div>
+  </div>
+
+  <!-- Sessions table -->
+  <div class="sessions-section">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+      <h3 style="margin-bottom:0">👥 Todas as sessões</h3>
+      <button class="export-btn" onclick="exportCSV()">⬇ Exportar CSV</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Sexo</th>
+          <th>Faixa Etária</th>
+          <th>Perfil</th>
+          <th>Dispositivo</th>
+          <th>CTA</th>
+          <th>Último Card</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="sessionsTableBody">
+        <tr><td colspan="8"><div class="empty">Carregando...</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  var _SBURL = 'https://fftgdntnavupoghgamia.supabase.co';
+  var _SBKEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZmdGdkbnRuYXZ1cG9naGdhbWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1ODgzMDYsImV4cCI6MjA5MzE2NDMwNn0.dP_vw2K3uFwjw7H4o2H4HDrJVc74vHO_4bnAK7orCYs';
+  var _sb = null;
+  var currentPeriod = 'today';
+  var refreshCountdown = 60, refreshInterval;
+  var sessionsChart, profileChart, devicesChart, dropoutChart;
+  var _sessionsData = [];
+
+  // Quiz questions & short option labels (for answer distribution)
+  var QS_ADMIN = [
+    { t: 'P1 — O que você vive hoje?', opts: ['Treino mas o espelho pouco muda', 'Perco peso mas fico murcho', 'Já tive resultado, agora nada funciona', 'Problema é mais constância'] },
+    { t: 'P2 — Gordura mais resistente?', opts: ['Barriga e pochete', 'Flancos e cintura', 'Peito e parte superior', 'Corpo todo'] },
+    { t: 'P3 — Energia ao longo do dia?', opts: ['Dependo de café ou pré-treino', 'Cai muito depois do almoço', 'Irregular, dias bons e ruins', 'Estável, não é meu problema'] },
+    { t: 'P4 — Quando come carboidrato?', opts: ['Incho ou fico pesado', 'Dá sono ou moleza', 'Ganho gordura mais fácil', 'Não percebo diferença'] },
+    { t: 'P5 — Como se sente após treinar?', opts: ['Quebrado, recuperação demora', 'Rendimento oscila sem motivo', 'Treino bem, resultado não aparece', 'Me recupero bem, rende'] },
+    { t: 'P6 — Ao apertar a dieta?', opts: ['Perco no início e trava', 'Fico sem energia, treino vai a saco', 'A fome explode', 'Funciona bem enquanto mantenho'] },
+    { t: 'P7 — O que percebe no seu caso?', opts: ['Gordura piora com estresse/treino excessivo', 'Gordura piora com carboidrato', 'Corpo inchado, pesado, recuperação ruim', 'Corpo para de responder a qualquer protocolo'] },
+  ];
+
+  var PROFILE_LABELS = { C: 'Cortisol', I: 'Insulina', F: 'Inflamação', M: 'Metabolismo' };
+  var PROFILE_COLORS = { C: '#E83232', I: '#3B82F6', F: '#22C55E', M: '#A855F7' };
+  var CARD_ORDER = ['_bounce', 'Sexo', 'Idade', 'Q1/7', 'Q2/7', 'Q3/7', 'Q4/7', 'Q5/7', 'Q6/7', 'Q7/7', 'Resultado'];
+  var CARD_MAP = { '_bounce': 'Sem interação', 'Sexo': 'Tela 1/10', 'Idade': 'Tela 2/10', 'Q1/7': 'Tela 3/10', 'Q2/7': 'Tela 4/10', 'Q3/7': 'Tela 5/10', 'Q4/7': 'Tela 6/10', 'Q5/7': 'Tela 7/10', 'Q6/7': 'Tela 8/10', 'Q7/7': 'Tela 9/10', 'Resultado': 'Tela 10/10' };
+
+  try {
+    _SBURL = localStorage.getItem('fq_admin_url') || _SBURL;
+    _SBKEY = localStorage.getItem('fq_admin_key') || _SBKEY;
+  } catch (e) {}
+
+  function saveConfig() {
+    _SBURL = document.getElementById('cfgUrl').value.trim();
+    _SBKEY = document.getElementById('cfgKey').value.trim();
+    try { localStorage.setItem('fq_admin_url', _SBURL); localStorage.setItem('fq_admin_key', _SBKEY); } catch (e) {}
+    _sb = null;
+    loadDashboard();
+  }
+  window.saveConfig = saveConfig;
+
+  function getSB() {
+    if (!_SBURL || !_SBKEY) return null;
+    if (!_sb && window.supabase) _sb = window.supabase.createClient(_SBURL, _SBKEY);
+    return _sb;
+  }
+
+  function getDateFilter(period) {
+    var now = new Date();
+    if (period === 'today') { var s = new Date(now.getFullYear(), now.getMonth(), now.getDate()); return s.toISOString(); }
+    if (period === '7d') { var d = new Date(now); d.setDate(d.getDate() - 7); return d.toISOString(); }
+    if (period === '30d') { var d = new Date(now); d.setDate(d.getDate() - 30); return d.toISOString(); }
+    return null;
+  }
+
+  function showError(msg) { var el = document.getElementById('errorBanner'); el.textContent = msg; el.style.display = 'block'; }
+  function hideError() { document.getElementById('errorBanner').style.display = 'none'; }
+
+  function initCharts() {
+    Chart.defaults.font = { family: '-apple-system, sans-serif', size: 12 };
+    Chart.defaults.color = '#64748B';
+    var red = '#E83232';
+
+    sessionsChart = new Chart(document.getElementById('sessionsChart'), {
+      type: 'bar',
+      data: { labels: [], datasets: [{ label: 'Sessões', data: [], backgroundColor: red + '99', borderColor: red, borderWidth: 1.5, borderRadius: 4 }] },
+      options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: '#E2E8F0' } }, x: { grid: { display: false } } } }
+    });
+
+    profileChart = new Chart(document.getElementById('profileChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Cortisol', 'Insulina', 'Inflamação', 'Metabolismo'],
+        datasets: [{ data: [0, 0, 0, 0], backgroundColor: ['#E83232', '#3B82F6', '#22C55E', '#A855F7'], borderWidth: 0, hoverOffset: 4 }]
+      },
+      options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { padding: 10, boxWidth: 12 } } } }
+    });
+
+    devicesChart = new Chart(document.getElementById('devicesChart'), {
+      type: 'pie',
+      data: { labels: ['Mobile', 'Desktop'], datasets: [{ data: [0, 0], backgroundColor: [red, '#3B82F6'], borderWidth: 0 }] },
+      options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { padding: 10, boxWidth: 12 } } } }
+    });
+
+    var dropoutLabelsPlugin = {
+      id: 'dropoutLabels',
+      afterDatasetsDraw: function(chart) {
+        var ctx = chart.ctx;
+        chart.data.datasets.forEach(function(dataset, i) {
+          var meta = chart.getDatasetMeta(i);
+          meta.data.forEach(function(bar, index) {
+            var value = dataset.data[index];
+            if (!value) return;
+            var barWidth = Math.abs(bar.x - bar.base);
+            ctx.save();
+            ctx.font = '700 11px -apple-system, sans-serif';
+            ctx.textBaseline = 'middle';
+            if (barWidth >= 36) {
+              // Inside bar, left-aligned with shadow
+              ctx.textAlign = 'left';
+              ctx.shadowColor = 'rgba(0,0,0,.55)';
+              ctx.shadowBlur = 3;
+              ctx.shadowOffsetX = 0;
+              ctx.shadowOffsetY = 1;
+              ctx.fillStyle = '#fff';
+              ctx.fillText(value, bar.base + 8, bar.y);
+            } else {
+              // Too narrow — show right of bar in dark
+              ctx.fillStyle = '#334155';
+              ctx.textAlign = 'left';
+              ctx.fillText(value, bar.x + 5, bar.y);
+            }
+            ctx.restore();
+          });
+        });
+      }
+    };
+    dropoutChart = new Chart(document.getElementById('dropoutChart'), {
+      type: 'bar',
+      data: {
+        labels: CARD_ORDER.map(function(c) { return CARD_MAP[c]; }),
+        datasets: [{
+          label: 'Sessões',
+          data: Array(11).fill(0),
+          backgroundColor: CARD_ORDER.map(function(c) { return c === '_bounce' ? '#94A3B855' : '#E8323266'; }),
+          borderColor: CARD_ORDER.map(function(c) { return c === '_bounce' ? '#94A3B8' : '#E83232'; }),
+          borderWidth: 1.5,
+          borderRadius: 4,
+          clip: false
+        }]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        layout: { padding: { right: 30 } },
+        plugins: { legend: { display: false } },
+        scales: { x: { beginAtZero: true, grid: { color: '#E2E8F0' } }, y: { grid: { display: false } } }
+      },
+      plugins: [dropoutLabelsPlugin]
+    });
+  }
+
+  function renderCards(d) {
+    document.getElementById('v-sessions').textContent = d.sessions;
+    document.getElementById('v-completion').textContent = d.sessions > 0 ? Math.round(d.completed / d.sessions * 100) + '%' : '0%';
+    document.getElementById('v-cta').textContent = d.cta;
+    document.getElementById('v-mobile').textContent = d.sessions > 0 ? Math.round(d.mobile / d.sessions * 100) + '%' : '0%';
+    var topPEl = document.getElementById('v-top-profile');
+    topPEl.textContent = d.topProfile ? PROFILE_LABELS[d.topProfile] : '—';
+    topPEl.style.color = d.topProfile ? PROFILE_COLORS[d.topProfile] : '#0F172A';
+  }
+
+  function renderCharts(d) {
+    var last14 = Array.from({ length: 14 }, function (_, i) {
+      var dt = new Date(); dt.setDate(dt.getDate() - 13 + i);
+      return dt.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+    });
+    sessionsChart.data.labels = last14;
+    sessionsChart.data.datasets[0].data = d.dailySessions || Array(14).fill(0);
+    sessionsChart.update();
+
+    profileChart.data.datasets[0].data = [d.profiles.C || 0, d.profiles.I || 0, d.profiles.F || 0, d.profiles.M || 0];
+    profileChart.update();
+
+    devicesChart.data.datasets[0].data = [d.devices.mobile || 0, d.devices.desktop || 0];
+    devicesChart.update();
+
+    dropoutChart.data.datasets[0].data = CARD_ORDER.map(function(c) { return d.dropoutCounts[c] || 0; });
+    dropoutChart.update();
+  }
+
+  function renderAnswerDist(questions) {
+    var grid = document.getElementById('tablesGrid');
+    var html = '';
+    questions.forEach(function (q) {
+      var total = q.counts.reduce(function (a, b) { return a + b; }, 0);
+      html += '<div class="q-table"><h4>' + q.t + '</h4>';
+      q.opts.forEach(function (opt, i) {
+        var cnt = q.counts[i] || 0;
+        var pct = total > 0 ? Math.round(cnt / total * 100) : 0;
+        html += '<div class="q-row">'
+          + '<div class="q-option-text" title="' + opt + '">' + opt + '</div>'
+          + '<div class="q-bar-wrap"><div class="q-bar" style="width:' + pct + '%"></div></div>'
+          + '<div class="q-count">' + cnt + '</div>'
+          + '<div class="q-pct">' + pct + '%</div>'
+          + '</div>';
+      });
+      html += '</div>';
+    });
+    grid.innerHTML = html || '<div class="empty">Sem dados ainda.</div>';
+  }
+
+  function renderSessions(data) {
+    _sessionsData = data || [];
+    var tbody = document.getElementById('sessionsTableBody');
+    if (!data || !data.length) {
+      tbody.innerHTML = '<tr><td colspan="8"><div class="empty">Nenhuma sessão ainda.</div></td></tr>';
+      return;
+    }
+    var html = data.slice(0, 300).map(function (row) {
+      var dt = row.started_at
+        ? new Date(row.started_at).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+        : '—';
+      var gender = row.gender === 'male' ? 'M' : (row.gender === 'female' ? 'F' : '—');
+      var pKey = row.profile_result;
+      var profileCell = pKey && PROFILE_LABELS[pKey]
+        ? '<span style="padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700;background:' + PROFILE_COLORS[pKey] + '22;color:' + PROFILE_COLORS[pKey] + '">' + PROFILE_LABELS[pKey] + '</span>'
+        : '—';
+      var ctaCell = row.cta_clicked_at ? '<span class="badge-cta">Clicou</span>' : '<span style="color:#CBD5E1">—</span>';
+      var sid = (row.session_id || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+      return '<tr>'
+        + '<td>' + dt + '</td>'
+        + '<td>' + gender + '</td>'
+        + '<td>' + (row.age_group || '—') + '</td>'
+        + '<td>' + profileCell + '</td>'
+        + '<td>' + (row.device_type || '—') + '</td>'
+        + '<td>' + ctaCell + '</td>'
+        + '<td style="color:#64748B;font-size:11px">' + (row.last_card ? (CARD_MAP[row.last_card] || row.last_card) : '—') + '</td>'
+        + '<td><button class="del-btn" onclick="deleteRow(\'' + sid + '\')" title="Apagar sessão">✕</button></td>'
+        + '</tr>';
+    }).join('');
+    tbody.innerHTML = html;
+  }
+
+  function exportCSV() {
+    if (!_sessionsData.length) { alert('Nenhum dado para exportar.'); return; }
+    var cols = ['Data', 'Sexo', 'Faixa Etária', 'Perfil', 'Dispositivo', 'CTA', 'Último Card'];
+    var rows = [cols.join(',')];
+    _sessionsData.forEach(function (row) {
+      var dt = row.started_at ? new Date(row.started_at).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+      var gender = row.gender === 'male' ? 'Masculino' : (row.gender === 'female' ? 'Feminino' : '');
+      var profile = row.profile_result ? (PROFILE_LABELS[row.profile_result] || row.profile_result) : '';
+      rows.push([dt, gender, row.age_group || '', profile, row.device_type || '', row.cta_clicked_at ? 'Sim' : 'Não', row.last_card ? (CARD_MAP[row.last_card] || row.last_card) : '']
+        .map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(','));
+    });
+    var blob = new Blob(['\uFEFF' + rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'bwm-quiz-sessoes-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+  }
+  window.exportCSV = exportCSV;
+
+  async function deleteRow(sessionId) {
+    if (!confirm('Apagar esta sessão?\n\n' + sessionId)) return;
+    var sb = getSB();
+    if (!sb) { alert('Supabase não configurado.'); return; }
+    try {
+      var res = await sb.from('fitness_quiz_sessions').delete().eq('session_id', sessionId);
+      if (res.error) throw res.error;
+      loadDashboard();
+    } catch (err) {
+      alert('Erro ao apagar: ' + (err.message || 'Erro desconhecido'));
+    }
+  }
+  window.deleteRow = deleteRow;
+
+  async function loadDashboard() {
+    hideError();
+    var sb = getSB();
+
+    if (!sb) {
+      renderCards({ sessions: 0, completed: 0, cta: 0, mobile: 0, topProfile: null });
+      var emptyQ = [{ t: 'Faixa etária', opts: ['18–29', '30–39', '40–49', '50+'], counts: [0,0,0,0] }]
+        .concat(QS_ADMIN.map(function(q) { return { t: q.t, opts: q.opts, counts: q.opts.map(function(){ return 0; }) }; }));
+      renderAnswerDist(emptyQ);
+      renderSessions([]);
+      return;
+    }
+
+    try {
+      var dateFilter = getDateFilter(currentPeriod);
+      var query = sb.from('fitness_quiz_sessions').select('*');
+      if (dateFilter) query = query.gte('started_at', dateFilter);
+      var res = await query.order('started_at', { ascending: false });
+
+      if (res.error) throw res.error;
+      var data = res.data || [];
+
+      var sessions = data.length;
+      var completed = data.filter(function (r) { return r.completed_at; }).length;
+      var cta = data.filter(function (r) { return r.cta_clicked_at; }).length;
+      var mobile = data.filter(function (r) { return r.device_type === 'mobile'; }).length;
+      var profiles = { C: 0, I: 0, F: 0, M: 0 };
+      var devices = { mobile: 0, desktop: 0 };
+      var dailySessions = Array(14).fill(0);
+      var answerCounts = QS_ADMIN.map(function (q) { return q.opts.map(function () { return 0; }); });
+      var ageKeys = ['18-29', '30-39', '40-49', '50+'];
+      var ageCounts = [0, 0, 0, 0];
+      var dropoutCounts = {};
+      CARD_ORDER.forEach(function(c) { dropoutCounts[c] = 0; });
+
+      data.forEach(function (row) {
+        if (row.profile_result && profiles[row.profile_result] !== undefined) profiles[row.profile_result]++;
+        if (row.device_type === 'mobile') devices.mobile++; else devices.desktop++;
+
+        var diff = Math.floor((Date.now() - new Date(row.started_at).getTime()) / 86400000);
+        if (diff >= 0 && diff < 14) dailySessions[13 - diff]++;
+
+        var ageIdx = ageKeys.indexOf(row.age_group);
+        if (ageIdx >= 0) ageCounts[ageIdx]++;
+
+        if (row.last_card && dropoutCounts[row.last_card] !== undefined) dropoutCounts[row.last_card]++;
+        else if (!row.last_card) dropoutCounts['_bounce']++;
+
+        if (row.answers) {
+          for (var qi = 0; qi < QS_ADMIN.length; qi++) {
+            var key = 'q' + (qi + 1);
+            var val = row.answers[key];
+            if (val !== null && val !== undefined) {
+              var idx = parseInt(val, 10);
+              if (!isNaN(idx) && idx >= 0 && idx < QS_ADMIN[qi].opts.length) {
+                answerCounts[qi][idx]++;
+              }
+            }
+          }
+        }
+      });
+
+      var topProfileEntry = Object.entries(profiles).sort(function (a, b) { return b[1] - a[1]; })[0];
+      var topProfile = topProfileEntry && topProfileEntry[1] > 0 ? topProfileEntry[0] : null;
+
+      var questions = [{ t: 'Faixa etária', opts: ['18–29', '30–39', '40–49', '50+'], counts: ageCounts }]
+        .concat(QS_ADMIN.map(function(q, qi) { return { t: q.t, opts: q.opts, counts: answerCounts[qi] }; }));
+
+      renderCards({ sessions: sessions, completed: completed, cta: cta, mobile: mobile, topProfile: topProfile });
+      renderCharts({ profiles: profiles, devices: devices, dailySessions: dailySessions, dropoutCounts: dropoutCounts });
+      renderAnswerDist(questions);
+      renderSessions(data);
+
+    } catch (err) {
+      showError('Erro ao carregar dados: ' + (err.message || JSON.stringify(err)));
+    }
+  }
+
+  function startRefreshCountdown() {
+    if (refreshInterval) clearInterval(refreshInterval);
+    refreshCountdown = 60;
+    refreshInterval = setInterval(function () {
+      refreshCountdown--;
+      document.getElementById('refreshInfo').textContent = 'Atualiza em ' + refreshCountdown + 's';
+      if (refreshCountdown <= 0) { loadDashboard(); refreshCountdown = 60; }
+    }, 1000);
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentPeriod = btn.dataset.period;
+      loadDashboard();
+      startRefreshCountdown();
+    });
+  });
+
+  document.getElementById('cfgUrl').value = _SBURL;
+  document.getElementById('cfgKey').value = _SBKEY;
+  if (_SBURL && _SBKEY) document.getElementById('configForm').style.display = 'none';
+
+  initCharts();
+  loadDashboard();
+  startRefreshCountdown();
+})();
+</script>
+</body>
+</html>
