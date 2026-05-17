@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<title>Por Que Seu Corpo Não Muda? Breno Moura</title>
+<meta name="description" content="7 perguntas para descobrir por que seu corpo parou de mudar mesmo quando você está fazendo de tudo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@900&display=swap" rel="stylesheet"></noscript>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{font-size:clamp(13px,1.2vw + 0.6vh,16px);--red:#E83232;--red2:#F55050;--ember:#C01818}
+html,body{height:100%;background:#0A0806;color:#fff;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;letter-spacing:.022em}
+.screen{display:none;width:100%;min-height:100dvh;flex-direction:column}
+.screen.on{display:flex}
+
+/* ── shimmer on highlighted text ── */
+@keyframes shimTxt{from{background-position:100% 0}to{background-position:-100% 0}}
+@keyframes lp{0%,100%{box-shadow:0 0 40px rgba(232,50,50,.38)}50%{box-shadow:0 0 80px rgba(232,50,50,.72)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+#sc-intro{align-items:center;justify-content:flex-start;text-align:center;padding:clamp(24px,4dvh,52px) 1rem clamp(32px,5dvh,64px);position:relative;overflow:hidden;overflow-y:auto;background:radial-gradient(ellipse 55% 80% at 0% 50%,rgba(160,160,160,.09) 0%,transparent 55%),radial-gradient(ellipse 55% 80% at 100% 50%,rgba(160,160,160,.09) 0%,transparent 55%),#000}
+#sc-intro::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,#000 20%,transparent 75%);pointer-events:none}
+.intro-inner{position:relative;z-index:1;max-width:55vw;width:100%}
+.intro-h1{font-size:clamp(28px,7vw,48px);font-weight:900;line-height:1.05;margin-bottom:1.125rem;letter-spacing:-.01em}
+.intro-h1 b{color:#E83232}
+.intro-sub{font-size:.875rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:1.75rem;max-width:380px;margin-left:auto;margin-right:auto}
+
+#topbar{position:fixed;top:0;left:0;right:0;z-index:200;background:#0A0806;border-bottom:1px solid rgba(255,255,255,.05);padding:.625rem 1rem;display:none;flex-direction:column}
+#topbar.on{display:flex}
+.tb1{display:flex;align-items:center;justify-content:space-between}
+.tb-logo{display:flex;align-items:center;gap:.4375rem}
+.tb-mark{width:1.875rem;height:1.875rem;border-radius:5px;background:linear-gradient(135deg,#E83232,#C01818);display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:900;color:#fff;flex-shrink:0}
+.tb-name{font-size:.8125rem;font-weight:800;letter-spacing:.02em}
+.tb2{display:flex;align-items:center;gap:.625rem;margin-top:.5625rem}
+#backBtn{background:none;border:none;color:#fff;font-size:1.625rem;cursor:pointer;padding:0;line-height:1;flex-shrink:0;-webkit-appearance:none}
+#prog-wrap{flex:1;height:.25rem;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+#prog-fill{height:100%;width:0%;background:linear-gradient(90deg,#C01818,#E83232,#F55050);transition:width .4s ease;box-shadow:0 0 8px #E83232}
+#prog-txt{font-size:.7rem;color:#fff;flex-shrink:0}
+
+.agrid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;max-width:50vw;margin:0 auto}
+.acard{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .22s;display:flex;flex-direction:column}
+.acard:hover{border-color:rgba(232,50,50,.8);box-shadow:0 0 22px rgba(232,50,50,.28);transform:translateY(-2px)}
+.acard:active{transform:scale(.97)}
+/* .aimg -> redefined above */
+.albl{padding:.6875rem .5rem .75rem;font-size:2vh;font-weight:700;color:#fff;text-align:center;background:rgba(255,255,255,.04)}
+.land-hint{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:rgba(255,255,255,.35);margin-top:6px;margin-bottom:12px}
+.land-legal{font-size:.59375rem;color:rgba(255,255,255,.3);max-width:88%;margin:0 auto;line-height:1.45;text-align:center}
+.land-legal a{color:rgba(255,255,255,.3)}
+
+#sc-quiz{padding:clamp(110px,16dvh,170px) 3vw clamp(40px,6dvh,80px);align-items:center}
+.quiz-inner{width:100%;max-width:55vw}
+.q-title{font-size:3vh;font-weight:800;line-height:1.35;margin-bottom:1.375rem;color:#fff}
+.q-opts{display:flex;flex-direction:column;gap:.625rem}
+.opt-btn{width:100%;padding:2.5vh 1.5vw 2.5vh 4.5vw;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:12px;cursor:pointer;text-align:left;color:#fff;font-size:1.9vh;font-weight:600;font-family:'Manrope',system-ui,sans-serif;line-height:1.45;position:relative;overflow:hidden;-webkit-appearance:none;transition:border-color .18s,background .18s;min-height:8vh;display:flex;align-items:center;justify-content:space-between;gap:.625rem}
+.opt-e{flex-shrink:0;font-size:1.2em;line-height:1}
+.opt-btn::before{content:"";position:absolute;left:1.5vw;top:50%;transform:translateY(-50%);width:2.2vh;height:2.2vh;border-radius:50%;border:2px solid rgba(255,255,255,.22);background:transparent;transition:all .18s}
+.opt-btn:hover{border-color:rgba(232,50,50,.45);background:rgba(232,50,50,.07)}
+.opt-btn.sel{border-color:#E83232;background:rgba(232,50,50,.1)}
+.opt-btn.sel::before{border-color:#E83232;background:#E83232;box-shadow:inset 0 0 0 5px rgba(255,255,255,.88)}
+
+#sc-micro{align-items:center;justify-content:center;padding:clamp(4rem,12dvh,6rem) 1.25rem clamp(3rem,8dvh,4.5rem)}
+.micro-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.875rem 1.5rem;text-align:center;max-width:25rem;width:100%}
+.micro-eyebrow{font-size:.625rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#E83232;margin-bottom:1.125rem}
+.micro-hint{font-size:.75rem;color:rgba(255,255,255,.75);line-height:1.65;margin-top:.875rem}
+.micro-prog{margin-top:18px;height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+.micro-prog-fill{height:100%;width:0%;background:linear-gradient(90deg,#C01818,#E83232,#F55050);border-radius:2px;transition:width 2.1s linear}
+
+#sc-load{align-items:center;justify-content:center;padding:1.5rem}
+.load-ring{width:7.5rem;height:7.5rem;border-radius:50%;background:linear-gradient(135deg,#E83232,#C01818);display:flex;align-items:center;justify-content:center;margin-bottom:1.75rem;animation:lp 1.6s ease-in-out infinite}
+@keyframes lp{0%,100%{box-shadow:0 0 40px rgba(232,50,50,.38)}50%{box-shadow:0 0 80px rgba(232,50,50,.72)}}
+.load-pct{font-size:2.125rem;font-weight:900;color:#fff;line-height:1}
+.load-txt{font-size:.8125rem;color:rgba(255,255,255,.7);text-align:center;max-width:15rem;font-style:italic;margin-top:.5rem}
+
+.chain-label{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,240,240,.28);margin-bottom:14px}
+.chain{display:flex;flex-direction:column;position:relative;padding-left:22px}
+.chain::before{content:'';position:absolute;left:4px;top:16px;bottom:16px;width:1px;background:linear-gradient(to bottom,rgba(232,50,50,.5),rgba(255,255,255,.08) 50%,rgba(232,50,50,.5))}
+.chain-row{display:flex;gap:12px;align-items:center}
+.chain-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;position:relative;z-index:1;margin-left:-26px;margin-right:6px}
+.chain-dot.t{background:#E83232;box-shadow:0 0 0 3px rgba(232,50,50,.15)}
+.chain-dot.n{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)}
+.chain-step{border-radius:6px;padding:10px 14px;font-size:.84rem;font-weight:700;flex:1;line-height:1.3}
+.chain-step.trigger{background:rgba(232,50,50,.08);border:1px solid rgba(232,50,50,.18);color:#fff}
+.chain-step.neutral{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);color:rgba(240,240,240,.7)}
+.chain-arr{color:rgba(232,50,50,.28);font-size:.72rem;padding:3px 0 3px 2px;line-height:1}
+
+#sc-result{display:none;flex-direction:column}
+#sc-result.on{display:flex}
+.r-hero{padding:4vh 16px 3vh;text-align:center;background:#000}
+.r-hero-in{max-width:760px;margin:0 auto}
+.r-badge{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;padding:6px 18px;border-radius:30px;margin-bottom:12px}
+.r-name{font-size:clamp(25px,6.9vw,39px);font-weight:900;margin-bottom:14px;line-height:1.1}
+.r-headline{font-size:15px;color:rgba(255,255,255,.82);line-height:1.7;max-width:575px;margin:0 auto 25px}
+@media(min-width:600px){#rHeroGrid{grid-template-columns:1fr 160px}#rHeroGrid>div:first-child{order:1}#rHeroGrid>div:last-child{order:2;flex-direction:column}}
+.r-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:460px){.r-grid{grid-template-columns:1fr}}
+.r-card{background:linear-gradient(135deg,rgba(255,255,255,.09) 0%,rgba(255,255,255,.03) 100%);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:16px}
+.r-card-lbl{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#C01818,#E83232,#F55050);padding:10px 16px;margin:-16px -16px 16px;border-radius:13px 13px 0 0;display:block}
+.r-card-txt{font-size:14px;color:rgba(255,255,255,.85);line-height:1.75;text-align:left}
+.r-sig{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-size:14px;color:rgba(255,255,255,.82);line-height:1.55;text-align:left}
+.r-dot{width:8px;height:8px;border-radius:50%;background:#E83232;flex-shrink:0;margin-top:5px}
+
+.sec{padding:4vh 18px 3vh;border-top:1px solid rgba(255,255,255,.04);background:#0A0806}
+.sec-in{max-width:760px;margin:0 auto}
+.sec-title{font-size:clamp(21px,5.75vw,28px);font-weight:800;margin-bottom:7px}
+.sec-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:21px;line-height:1.55}
+.slabel{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#E83232;margin-bottom:14px;display:block}
+h2{font-size:clamp(1.5rem,3.8vw,2.4rem);font-weight:900;line-height:1.1;letter-spacing:.04em;text-transform:uppercase;margin-bottom:20px}
+/* .acc -> shimmer above */
+
+.evo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid rgba(255,255,255,.07);border-radius:0 0 12px 12px;overflow:hidden}
+.evo-col{background:#0f0d0b;display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,.07)}
+.evo-col:last-child{border-right:none}
+.evo-head{display:flex;align-items:center;gap:8px;padding:9px 12px;background:#1a1510;border-bottom:1px solid rgba(255,255,255,.05)}
+.evo-badge{font-size:10px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;padding:2px 9px;border-radius:20px;background:rgba(232,50,50,.15);border:1px solid rgba(232,50,50,.35);color:#E83232}
+.evo-badge-g{font-size:10px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;padding:2px 9px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff}
+.evo-desc{font-size:10px;color:rgba(255,255,255,.45);padding:7px 12px;border-bottom:1px solid rgba(255,255,255,.04);font-style:italic}
+.evo-buls{padding:10px 12px 14px;display:flex;flex-direction:column;gap:7px}
+.evo-bul{display:flex;align-items:flex-start;gap:7px;font-size:13px;color:rgba(255,255,255,.85);line-height:1.4}
+.evo-d{width:6px;height:6px;border-radius:50%;background:#E83232;flex-shrink:0;margin-top:3px}
+.evo-dg{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);flex-shrink:0;margin-top:3px}
+.pulse{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+@media(max-width:560px){.evo-grid{grid-template-columns:1fr}.evo-col{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}.evo-col:last-child{border-bottom:none}}
+@media(min-width:700px){#learnGrid{grid-template-columns:1fr 220px}#learnGrid>div:last-child{position:sticky;top:90px}}
+
+.ch-grid{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:520px){.ch-grid{grid-template-columns:1fr 1fr}}
+.ch-card{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:14px 16px;transition:background .15s,border-color .15s}
+.ch-card:hover{background:rgba(255,255,255,.055);border-color:rgba(232,50,50,.2)}
+.ch-num{font-size:.62rem;font-weight:900;color:#E83232;opacity:.5;flex-shrink:0;padding-top:3px;min-width:18px}
+.ch-body strong{display:block;font-size:.78rem;font-weight:700;color:rgba(240,240,240,.9);line-height:1.35;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
+.ch-body span{font-size:.74rem;color:rgba(240,240,240,.4);line-height:1.45;font-style:italic}
+
+.caso-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:860px){.caso-grid{grid-template-columns:repeat(3,1fr)}}
+.caso-card{background:rgba(8,8,8,.9);border:1px solid rgba(255,255,255,.09);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.caso-header{padding:18px 22px 14px;border-bottom:1px solid rgba(255,255,255,.06)}
+.caso-badge{display:inline-block;background:rgba(232,50,50,.1);border:1px solid rgba(232,50,50,.25);color:#E83232;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;padding:3px 9px;margin-bottom:7px}
+.caso-name{font-size:.98rem;font-weight:800;color:#fff;display:block}
+.caso-dados{padding:14px 22px;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.01)}
+.caso-label{font-size:.56rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,240,240,.22);margin-bottom:6px;display:block}
+.caso-sinais li{font-size:.78rem;color:rgba(240,240,240,.6);line-height:1.45;display:flex;gap:7px;margin-bottom:4px}
+.caso-sinais li::before{content:"·";color:#E83232;flex-shrink:0}
+.caso-padrao-text{font-size:.8rem;color:rgba(240,240,240,.65);line-height:1.6;font-style:italic}
+.caso-video{width:100%;background:#000;position:relative;cursor:pointer}
+.caso-video video{width:100%;display:block;max-height:280px;object-fit:cover}
+.caso-video .vplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.38);transition:background .2s}
+.caso-video .vplay:hover{background:rgba(0,0,0,.18)}
+.caso-video .vplay svg{filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
+.caso-video.playing .vplay{display:none}
+.caso-evolucao img{width:100%;display:block}
+.caso-evolucao-label{padding:7px 14px;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,240,240,.22);background:rgba(0,0,0,.6)}
+
+.author-section{background:#0d0d0d;padding:4vh 0}
+.author-grid{display:grid;grid-template-columns:1fr;gap:36px;align-items:start}
+@media(min-width:720px){.author-grid{grid-template-columns:220px 1fr}}
+.author-photo img{border-radius:10px;box-shadow:0 16px 48px rgba(0,0,0,.5);width:100%;max-width:220px}
+.author-name-h{font-size:1.8rem;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:3px}
+.author-role{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#E83232;margin-bottom:16px}
+.author-stats-g{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+@media(min-width:500px){.author-stats-g{grid-template-columns:repeat(4,1fr)}}
+.author-stat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:14px 12px;text-align:center}
+.author-stat-n{font-size:1.4rem;font-weight:900;color:#E83232;line-height:1;display:block}
+.author-stat-l{font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(240,240,240,.55);margin-top:3px;display:block}
+.author-creds{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.author-cred{background:rgba(232,50,50,.07);border:1px solid rgba(232,50,50,.18);border-radius:4px;padding:4px 10px;font-size:.68rem;font-weight:600;color:rgba(240,240,240,.65)}
+.author-bio{font-size:.93rem;color:rgba(240,240,240,.72);line-height:1.8}
+
+.offer-section{position:relative;background:#0A0806;padding:6vh 0 7vh}
+.offer-section::before{display:none}
+.offer-cont{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px}
+.offer-grid{display:grid;grid-template-columns:1fr;gap:20px;align-items:start}
+@media(min-width:760px){.offer-grid{grid-template-columns:1fr 360px}}
+.offer-left{background:rgba(8,8,8,.75);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:28px}
+.offer-left h2{margin-bottom:14px;font-size:clamp(1.3rem,3vw,1.9rem)}
+.offer-left p{font-size:.93rem;color:rgba(240,240,240,.72);line-height:1.75;margin-bottom:18px}
+.guarantee{display:flex;gap:14px;align-items:flex-start;background:rgba(232,50,50,.05);border:1px solid rgba(232,50,50,.18);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.guarantee-icon{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(232,50,50,.3);background:rgba(232,50,50,.08);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;color:#E83232}
+.guarantee-text h4{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#E83232;margin-bottom:4px}
+.guarantee-text p{font-size:.82rem;color:rgba(240,240,240,.72);line-height:1.5;margin:0}
+.offer-bullets li{font-size:.85rem;color:rgba(240,240,240,.68);display:flex;gap:8px;line-height:1.5;margin-bottom:6px}
+.offer-bullets li::before{content:"·";color:#E83232}
+.offer-delivery{font-size:.75rem;color:rgba(240,240,240,.5);border-top:1px solid rgba(255,255,255,.08);padding-top:12px;margin-top:4px;line-height:1.6}
+.offer-right{background:rgba(8,8,8,.88);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:64px 28px 28px;display:flex;flex-direction:column;gap:10px;overflow:visible;position:relative}
+.offer-tag{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,240,240,.5)}
+.offer-old{font-size:.95rem;color:rgba(240,240,240,.45);text-decoration:line-through}
+.offer-cupom{display:inline-flex;align-items:center;background:rgba(232,50,50,.1);border:1px solid rgba(232,50,50,.22);border-radius:4px;padding:4px 10px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(232,50,50,.9);width:fit-content}
+.offer-price{font-size:4rem;font-weight:900;color:#E83232;line-height:1;letter-spacing:-.04em}
+.offer-price sup{font-size:1.3rem;vertical-align:super;font-weight:700}
+.offer-price-note{font-size:.75rem;color:rgba(240,240,240,.5)}
+.offer-includes{display:flex;flex-direction:column;gap:5px;border-top:1px solid rgba(255,255,255,.08);padding-top:12px}
+.offer-includes li{font-size:.82rem;color:rgba(240,240,240,.75);display:flex;gap:8px}
+.offer-includes li::before{content:"✓";color:#6fba7f;font-weight:900;flex-shrink:0}
+.offer-guar-note{text-align:center;font-size:.72rem;color:rgba(240,240,240,.45)}
+.trust-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.trust-item{font-size:.68rem;font-weight:600;color:rgba(240,240,240,.35);display:flex;align-items:center;gap:4px}
+.trust-item::before{content:"✓";color:rgba(111,186,127,.5)}
+
+.cta-btn{color:#fff!important;display:flex;width:100%;padding:17px;background:linear-gradient(135deg,#E83232,#C01818);border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 22px rgba(232,50,50,.3);transition:transform .15s,box-shadow .15s;letter-spacing:.02em;font-family:'Manrope',system-ui,sans-serif;-webkit-appearance:none;text-decoration:none}
+.cta-btn:active{transform:scale(.97)}
+.cta-btn:hover{background:#c01818;box-shadow:0 8px 32px rgba(232,50,50,.45)}
+
+.faq-section{background:#0d0d0d;padding:4vh 0 5vh}
+.faq-list{width:100%}
+.faq-item{border:1px solid rgba(255,255,255,.10);border-radius:8px;overflow:hidden;height:fit-content}
+
+.faq-q{width:100%;background:rgba(255,255,255,.03);border:none;color:#fff;font-family:'Manrope',system-ui,sans-serif;font-size:.95rem;font-weight:700;text-align:left;padding:20px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:background .15s}
+.faq-q:hover{background:rgba(255,255,255,.05)}
+.faq-icon{flex-shrink:0;width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:.68rem;transition:transform .2s;pointer-events:none}
+.faq-item.open .faq-icon{transform:rotate(45deg);border-color:#E83232;color:#E83232}
+.faq-a{display:none;padding:0 24px 20px;font-size:.9rem;color:rgba(240,240,240,.72);line-height:1.75}
+.faq-item.open .faq-a{display:block}
+
+footer{background:#000;padding:36px 0;text-align:center}
+.footer-brand{font-size:.95rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.footer-copy{font-size:.72rem;color:rgba(240,240,240,.3);line-height:1.8}
+
+@media(max-width:600px){
+  .land-cont,.quiz-inner{max-width:95vw}
+  #sc-intro{padding:5dvh 2vw 6dvh}
+  #sc-quiz{padding:clamp(110px,16dvh,170px) 2vw clamp(40px,6dvh,80px)}
+  .opt-btn{padding:1.5vh 2vw 1.5vh 9vw}
+  .opt-btn::before{left:2vw;width:2vh;height:2vh}
+  .agrid{max-width:95vw}
+  .offer-left,.offer-right{padding:20px}
+}
+@media(max-width:480px){.offer-left,.offer-right{padding:18px}}
+:focus-visible{outline:3px solid #E83232;outline-offset:3px;border-radius:3px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+
+@media(min-width:600px){#rHeroGrid{grid-template-columns:1fr 170px}}
+@media(max-width:700px){#mechGrid{grid-template-columns:1fr !important}#learnGrid{grid-template-columns:1fr !important}#authorGrid{grid-template-columns:1fr !important}}
+@media(min-width:700px){#learnGrid{grid-template-columns:1fr 220px}#mechGrid{grid-template-columns:1fr 260px}}
+@media(max-width:599px){#rHeroGrid{grid-template-columns:1fr}}
+@media(max-width:599px){#rHeroGrid img{display:none}}
+@media(max-width:680px){#faqGrid{grid-template-columns:1fr}.faq-item{border-radius:8px !important}}
+
+
+/* ── shimmer keyframe ── */
+@keyframes shimTxt{from{background-position:100% 0}to{background-position:-100% 0}}
+
+/* ── land container (replaces intro-inner) ── */
+.land-cont{position:relative;z-index:1;width:100%;max-width:82vw;margin:0 auto;text-align:center}
+
+/* ── Instagram pill ── */
+.ig-pill{display:inline-flex;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:.5rem 1.125rem .5rem .5rem;gap:.625rem;width:fit-content;margin:0 auto 1.5rem;text-align:left}
+.ig-av-wrap{width:2.875rem;height:2.875rem;border-radius:50%;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);padding:2px;flex-shrink:0}
+.ig-av-img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2px solid #0a0806;display:block}
+.ig-info{min-width:0}
+.ig-row1{display:flex;align-items:center;gap:5px;margin-bottom:2px}
+.ig-handle{font-size:.78rem;font-weight:700;color:#fff}
+.ig-chk{width:14px;height:14px;background:#E83232;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:900;flex-shrink:0;box-shadow:0 0 6px rgba(232,50,50,.45)}
+.ig-name-ln{font-size:.6rem;color:rgba(255,255,255,.55);margin-bottom:3px}
+.ig-stats{display:flex;gap:8px;font-size:.575rem;color:rgba(255,255,255,.45);flex-wrap:wrap}
+.ig-stats strong{color:rgba(255,255,255,.85);font-weight:700}
+
+/* ── main headline ── */
+.bwm-headline-main{font-family:'Inter','Manrope',sans-serif;font-size:clamp(28px,7.5vw,58px);font-weight:900;line-height:1.04;letter-spacing:.055em;margin-bottom:1.25rem;-webkit-font-smoothing:auto}
+.lt-white{color:#fff}
+.lt-sep{color:rgba(255,255,255,.35);font-weight:300}
+.lt-orange{background:linear-gradient(90deg,#E83232 0%,#F55050 25%,#ff9090 50%,#F55050 75%,#E83232 100%);background-size:200% 100%;background-position:100% 0;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline;animation:shimTxt 2.2s linear infinite;will-change:background-position}
+
+/* ── subtitle & cta label ── */
+.land-sub{font-size:.82rem;letter-spacing:.04em;color:rgba(255,255,255,.6);line-height:1.75;max-width:500px;margin:0 auto 1.75rem}
+.land-cta-key{font-size:.875rem;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.125rem}
+
+/* ── gender grid ── */
+.agrid.gender-grid{grid-template-columns:repeat(2,1fr);max-width:50vw;gap:1rem}
+.agrid.gender-grid .aimg{aspect-ratio:4/3}
+
+/* ── acard image ── */
+.aimg{width:100%;aspect-ratio:4/3;background:linear-gradient(180deg,#1e1209,#0f0c0a);overflow:hidden;position:relative}
+.aimg img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.aimg::after{content:"";position:absolute;bottom:0;left:0;right:0;height:38%;background:linear-gradient(to top,rgba(10,8,6,.65),transparent);pointer-events:none}
+
+/* ── card label ── */
+.albl{padding:.8rem .5rem .85rem;font-size:.8rem;font-weight:800;color:#fff;text-align:center;background:rgba(255,255,255,.04);letter-spacing:.06em;text-transform:uppercase}
+
+/* ── click hint & legal ── */
+.land-click-hint{display:flex;align-items:center;justify-content:center;gap:6px;font-size:.72rem;color:rgba(255,255,255,.28);margin-top:4px;margin-bottom:10px;letter-spacing:.02em}
+.land-legal{font-size:.6rem;color:rgba(255,255,255,.22);max-width:88%;margin:0 auto;line-height:1.55;text-align:center}
+.land-legal a{color:rgba(255,255,255,.3);text-decoration:underline}
+
+/* ── .acc shimmer (in result h2) ── */
+.acc{background:linear-gradient(90deg,#E83232 0%,#F55050 30%,#ff9090 55%,#F55050 75%,#E83232 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimTxt 2.5s linear infinite;display:inline}
+
+/* ── slabel glow ── */
+.slabel{font-size:.65rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#E83232;margin-bottom:18px;display:block;text-shadow:0 0 16px rgba(232,50,50,.45)}
+
+/* ── sec & sec-in ── */
+.sec{padding:9vh 28px 8vh;border-top:1px solid rgba(255,255,255,.05);background:#0A0806}
+.sec-in{max-width:900px;margin:0 auto}
+
+/* ── result hero glow ── */
+.r-hero{padding:8vh 24px 7vh;text-align:center;background:#0A0806}
+.r-name{font-family:'Inter','Manrope',sans-serif;font-size:clamp(24px,5.5vw,42px);font-weight:900;margin-bottom:18px;line-height:1.05;letter-spacing:.035em}
+.r-badge{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;padding:7px 20px;border-radius:30px;margin-bottom:16px;box-shadow:0 0 22px rgba(232,50,50,.22)}
+.r-card{background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.02) 100%);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;box-shadow:0 4px 24px rgba(0,0,0,.4),0 1px 0 rgba(255,255,255,.05) inset}
+.r-card-lbl{font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#C01818,#E83232,#F55050,#F59340);padding:11px 20px;margin:-20px -20px 20px;border-radius:15px 15px 0 0;display:block}
+.r-dot{width:8px;height:8px;border-radius:50%;background:#E83232;flex-shrink:0;margin-top:5px;box-shadow:0 0 6px rgba(232,50,50,.5)}
+
+/* ── cta btn glow ── */
+.cta-btn{color:#fff !important;display:flex;width:100%;padding:18px;background:linear-gradient(135deg,#E83232,#C01818);border:none;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 28px rgba(232,50,50,.4);transition:transform .15s,box-shadow .15s;letter-spacing:.04em;font-family:'Manrope',system-ui,sans-serif;-webkit-appearance:none;text-decoration:none;position:relative;overflow:hidden}
+.cta-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,.12),transparent 55%);pointer-events:none}
+.cta-btn:active{transform:scale(.97)}
+.cta-btn:hover{box-shadow:0 8px 36px rgba(232,50,50,.55)}
+
+/* ── offer price shimmer ── */
+.offer-price{font-size:4.5rem;font-weight:900;line-height:1;letter-spacing:-.04em;background:linear-gradient(90deg,#E83232 0%,#F55050 40%,#ff9090 60%,#E83232 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimTxt 2.2s linear infinite}
+
+@media(max-width:600px){.land-cont{max-width:95vw}.agrid.gender-grid{max-width:95vw}.bwm-headline-main{font-size:clamp(22px,8.5vw,34px)}.land-sub{font-size:.75rem}.sec{padding:7vh 18px 6vh}}
+.r-hero .r-grid{margin-top:52px}
+/* ═══════════════════════════════════════════════════
+   PV — MOBILE LAYOUT  (max 640px)
+════════════════════════════════════════════════════ */
+@media(max-width:640px){
+
+  /* ── r-hero: livro em cima, texto centralizado embaixo ── */
+  #rHeroGrid{
+    grid-template-columns:1fr !important;
+    text-align:center !important;
+    gap:16px;
+  }
+  #rHeroGrid>div:first-child{
+    order:2;
+    padding:0 8px 12px !important;
+    text-align:center;
+  }
+  #rHeroGrid>div:last-child{
+    order:1;
+    justify-content:center;
+    padding-top:0;
+  }
+  #rHeroGrid img{
+    display:block !important;
+    max-width:180px !important;
+    width:180px !important;
+    margin:0 auto;
+  }
+  .r-name,.r-headline{text-align:center;margin-left:auto;margin-right:auto}
+  .r-hero-in{padding:0 8px}
+
+  /* ── learnGrid: livro em cima, conteúdo centralizado embaixo ── */
+  #learnGrid{gap:28px !important}
+  #learnGrid>div:first-child{order:2}
+  #learnGrid>div:last-child{
+    order:1;
+    position:static !important;
+    align-items:center;
+    text-align:center;
+  }
+  #learnGrid>div:last-child img{margin:0 auto 12px}
+  #learnGrid>div:last-child a{text-align:center}
+
+  /* ── mechGrid: empilha, cascata abaixo do texto ── */
+  #mechGrid{text-align:left;gap:32px !important}
+  #mechGrid h2{text-align:center}
+
+  /* ── authorGrid: foto topo, texto centralizado ── */
+  #authorGrid{text-align:center;gap:24px !important}
+  #authorGrid>div:first-child{max-height:460px !important;overflow:hidden}
+  #authorGrid>div:last-child{text-align:center}
+  #authorGrid p{text-align:left}
+  .author-stats-g{grid-template-columns:repeat(2,1fr) !important}
+  .author-creds{justify-content:center !important}
+
+  /* ── offer: card de preço primeiro, sem efeito de overflow ── */
+  .offer-grid{grid-template-columns:1fr !important}
+  .offer-right{order:-1;padding-top:28px !important}
+  .offer-right img:first-child{
+    width:160px !important;
+    margin-top:0 !important;
+    margin-bottom:16px !important;
+  }
+  .offer-left{order:1}
+
+  /* ── faqGrid ── */
+  #faqGrid{grid-template-columns:1fr !important}
+  #faqGrid ul:last-child li:first-child{border-radius:0}
+  #faqGrid ul:first-child li:last-child{border-radius:0}
+
+  /* ── centralização geral nos títulos e labels da PV ── */
+  #sc-result .slabel{text-align:center}
+  #sc-result h2{text-align:center}
+  #sc-result .sec-sub{text-align:center}
+
+  /* ── r-grid de cards: 1 col ── */
+  .r-grid{grid-template-columns:1fr !important}
+  .r-hero .r-grid{margin-top:28px}
+
+  /* ── h3 capítulos ── */
+  #sc-result h3{text-align:center}
+
+  /* ── FAQ: resetar border-radius para 1 coluna ── */
+  .faq-item{border-radius:8px !important}
+
+  /* ── seções internas: padding lateral reduzido ── */
+  #sc-result>div>div[style*="max-width:1080px"],
+  #sc-result>div>div>div[style*="max-width:1080px"]{padding-left:0 !important;padding-right:0 !important}
+
+  /* ── padding geral da PV ── */
+  .r-hero{padding:6vh 16px 5vh}
+  .sec{padding-left:16px !important;padding-right:16px !important}
+  .offer-cont{padding-left:16px !important;padding-right:16px !important}
+  #sc-result>div[style*="background:#0A0806"]{padding-left:16px;padding-right:16px}
+}
+
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="tb1">
+    <div class="tb-logo">
+      <div class="tb-mark">BM</div>
+      <span class="tb-name">Por Que Seu Corpo Não Muda? &middot; Breno Moura</span>
+    </div>
+  </div>
+  <div class="tb2">
+    <button id="backBtn" onclick="goBack()" aria-label="Voltar">&#8249;</button>
+    <div id="prog-wrap"><div id="prog-fill"></div></div>
+    <span id="prog-txt"></span>
+  </div>
+</div>
+
+<div id="sc-intro" class="screen on">
+  <div class="land-cont">
+
+    <!-- Instagram pill -->
+    <div class="ig-pill">
+      <div class="ig-av-wrap">
+        <img src="img/fotoinsta.webp" alt="Dr. Breno Moura" class="ig-av-img"
+          width="48" height="48" fetchpriority="low" decoding="async" loading="eager"
+          onerror="this.style.display='none'">
+      </div>
+      <div class="ig-info">
+        <div class="ig-row1">
+          <span class="ig-handle">brenowfm</span>
+          <span class="ig-chk">&#10003;</span>
+        </div>
+        <div class="ig-name-ln">Dr. Breno Moura &bull; Alta Performance</div>
+        <div class="ig-stats">
+          <span><strong>349</strong> posts</span>
+          <span><strong>35,9&nbsp;mil</strong> seguidores</span>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="bwm-headline-main">
+      <span class="lt-white">POR QUE SEU CORPO</span><br>
+      <span class="lt-orange">N&Atilde;O MUDA?</span>
+    </h1>
+
+    <p class="land-sub">
+      7 perguntas para descobrir por que seu corpo parou de mudar 
+      mesmo quando voc&ecirc; est&aacute; fazendo de tudo.
+    </p>
+
+    <div class="land-cta-key">Selecione seu g&ecirc;nero para come&ccedil;ar</div>
+
+    <div class="agrid gender-grid">
+      <div class="acard" onclick="iniciarQuiz('m')" role="button" tabindex="0">
+        <div class="aimg">
+          <picture>
+            <source srcset="img/c1m1.webp" type="image/webp">
+            <img src="img/c1m1.webp" alt="Homem"
+              fetchpriority="high" decoding="async" width="400" height="300">
+          </picture>
+        </div>
+        <div class="albl">&#128104; Homem</div>
+      </div>
+      <div class="acard" onclick="iniciarQuiz('f')" role="button" tabindex="0">
+        <div class="aimg">
+          <picture>
+            <source srcset="img/c1m2.webp" type="image/webp">
+            <img src="img/c1m2.webp" alt="Mulher"
+              fetchpriority="high" decoding="async" width="400" height="300">
+          </picture>
+        </div>
+        <div class="albl">&#128105; Mulher</div>
+      </div>
+    </div>
+
+    <div class="land-click-hint">
+      &#128433;&#65039; <span>Clique em uma das op&ccedil;&otilde;es acima para come&ccedil;ar</span>
+    </div>
+
+    <p style="margin-top:8px;margin-bottom:18px">
+      <button onclick="skipToPV()"
+        style="background:none;border:none;color:rgba(255,255,255,.24);font-size:.63rem;cursor:pointer;font-family:inherit;text-decoration:underline;letter-spacing:.03em">
+        J&aacute; conhe&ccedil;o &rarr; ir direto para a oferta
+      </button>
+    </p>
+
+    <p class="land-legal">
+      Ao continuar voc&ecirc; concorda com nossos <a href="#">Termos</a> e
+      <a href="#">Privacidade</a>. Este teste n&atilde;o substitui avalia&ccedil;&atilde;o m&eacute;dica.
+    </p>
+
+  </div>
+</div>
+<div id="sc-quiz" class="screen">
+  <div class="quiz-inner" id="qContent"></div>
+</div>
+
+<div id="sc-micro" class="screen">
+  <div id="microContent" style="display:flex;align-items:center;justify-content:center;width:100%;padding:4rem 1.25rem"></div>
+</div>
+
+<div id="sc-load" class="screen">
+  <div class="load-ring"><div class="load-pct" id="loadPct">0%</div></div>
+  <p class="load-txt" id="loadTxt">Calculando seu resultado...</p>
+</div>
+
+<div id="sc-result" class="screen">
+
+  <!-- ── PERFIL HERO ── -->
+  <div class="r-hero">
+    <div class="r-hero-in" style="max-width:900px">
+      <!-- grid: texto + capa -->
+      <div style="display:grid;grid-template-columns:1fr 300px;gap:36px;align-items:flex-start;text-align:left;margin-bottom:24px" id="rHeroGrid">
+        <div style="padding:28px 0 28px 32px">
+          <div id="rBadge" class="r-badge" style="margin-bottom:10px"></div>
+          <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:8px">Seu resultado</div>
+          <div id="rName" class="r-name"></div>
+          <p id="rHeadline" class="r-headline" style="margin:0"></p>
+        </div>
+        <div style="display:flex;justify-content:center;padding-top:4px">
+          <img src="img/livro.webp" alt="Por Que Seu Corpo Não Muda? Breno Moura"
+            style="width:100%;max-width:300px;display:block;filter:drop-shadow(0 32px 64px rgba(0,0,0,.85))"
+            loading="eager" decoding="async">
+        </div>
+      </div>
+      <!-- cards -->
+      <div class="r-grid">
+        <div class="r-card">
+          <div class="r-card-lbl">O que está acontecendo</div>
+          <div id="rMech" class="r-card-txt"></div>
+        </div>
+        <div class="r-card">
+          <div class="r-card-lbl">Sinais que indicam isso</div>
+          <div id="rSigs"></div>
+        </div>
+      </div>
+      <div class="r-card" style="margin-top:18px">
+        <div class="r-card-lbl">O que o livro explica para o seu caso</div>
+        <div id="rSol" class="r-card-txt"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ENTENDENDO + CASCATA ── -->
+  <div class="sec" style="background:#0A0806">
+    
+    <div style="position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px">
+      <span class="slabel">Entendendo o que está acontecendo</span>
+      <div style="display:grid;grid-template-columns:1fr 280px;gap:48px;align-items:start" id="mechGrid">
+        <!-- texto -->
+        <div>
+          <h2 style="font-size:clamp(1.4rem,3.2vw,2rem)">O problema não é o que você faz.<br><span class="acc">É como o seu corpo está se sentindo enquanto você faz.</span></h2>
+          <p style="font-size:.98rem;color:rgba(240,240,240,.82);line-height:1.8;margin-bottom:14px">Quando o corpo acumula cansaço demais, pouco descanso e muito estresse, ele começa a guardar energia. Não porque quer. Porque está com medo de faltar.</p>
+          <p style="font-size:.98rem;color:rgba(240,240,240,.82);line-height:1.8;margin-bottom:20px">Quanto mais você força, mais ele resiste. Não é culpa sua. É o corpo se protegendo do que está vivendo todos os dias.</p>
+          <div style="background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);border-left:3px solid #E83232;border-radius:10px;padding:22px 24px;font-size:.93rem;color:rgba(240,240,240,.82);line-height:1.7;font-style:italic">
+            O corpo está reagindo ao que você repete todo dia.
+            <strong style="display:block;font-style:normal;font-weight:700;color:#fff;margin-top:8px;font-size:.95rem">O problema quase nunca é falta de força de vontade. É o que o corpo está vivendo.</strong>
+          </div>
+        </div>
+        <!-- cascata -->
+        <div>
+          <p class="chain-label">O que acontece por dentro</p>
+          <div class="chain" aria-label="Sequência de efeitos no corpo">
+            <div class="chain-row"><span class="chain-dot t"></span><div class="chain-step trigger">Corpo sobrecarregado</div></div>
+            <div class="chain-arr">&#8595;</div>
+            <div class="chain-row"><span class="chain-dot n"></span><div class="chain-step neutral">Queima menos gordura</div></div>
+            <div class="chain-arr">&#8595;</div>
+            <div class="chain-row"><span class="chain-dot n"></span><div class="chain-step neutral">Fome aumenta</div></div>
+            <div class="chain-arr">&#8595;</div>
+            <div class="chain-row"><span class="chain-dot n"></span><div class="chain-step neutral">Energia cai</div></div>
+            <div class="chain-arr">&#8595;</div>
+            <div class="chain-row"><span class="chain-dot t"></span><div class="chain-step trigger">Mais esforço, menos resultado</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── O QUE O LIVRO ENSINA ── -->
+  <div class="sec">
+    <div style="max-width:1080px;margin:0 auto;padding:0 24px">
+      <span class="slabel">Com base nas suas respostas</span>
+
+      <!-- 2-col: esq=título+evo, dir=capa -->
+      <div style="display:grid;grid-template-columns:1fr 220px;gap:48px;align-items:start" id="learnGrid">
+        <div>
+          <h2>O que você vai aprender<br><span class="acc">com o livro</span></h2>
+          <p class="sec-sub">Não é uma dieta. Não é um treino. É entender como o seu corpo funciona.</p>
+
+          <!-- 136 / 11 / PDF distribuídos no topo da evo-grid -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,.06);border-radius:12px 12px 0 0;overflow:hidden">
+            <div style="background:rgba(20,20,20,.9);padding:14px 10px;text-align:center">
+              <span style="display:block;font-size:1.6rem;font-weight:900;color:#E83232;line-height:1">136</span>
+              <span style="font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(240,240,240,.4);margin-top:3px;display:block">Páginas</span>
+            </div>
+            <div style="background:rgba(20,20,20,.9);padding:14px 10px;text-align:center">
+              <span style="display:block;font-size:1.6rem;font-weight:900;color:#E83232;line-height:1">11</span>
+              <span style="font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(240,240,240,.4);margin-top:3px;display:block">Capítulos</span>
+            </div>
+            <div style="background:rgba(20,20,20,.9);padding:14px 10px;text-align:center">
+              <span style="display:block;font-size:1.6rem;font-weight:900;color:#E83232;line-height:1">PDF</span>
+              <span style="font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(240,240,240,.4);margin-top:3px;display:block">Formato</span>
+            </div>
+          </div>
+
+          <div class="evo-grid">
+            <div class="evo-col">
+              <div class="evo-head" style="background:linear-gradient(90deg,#1d1009,#1a0f07)">
+                <span class="evo-badge-g">HOJE</span>
+                <div class="pulse"></div>
+              </div>
+              <div class="evo-desc">Como você está agora</div>
+              <div class="evo-buls">
+                <div class="evo-bul"><span class="evo-dg"></span><span>Resultado travado</span></div>
+                <div class="evo-bul"><span class="evo-dg"></span><span>Esforço sem retorno</span></div>
+                <div class="evo-bul"><span class="evo-dg"></span><span>Recomeçando sempre</span></div>
+              </div>
+            </div>
+            <div class="evo-col">
+              <div class="evo-head"><span class="evo-badge">DEPOIS DE LER</span></div>
+              <div class="evo-desc">O que muda na sua cabeça</div>
+              <div class="evo-buls" id="rEvo1"></div>
+            </div>
+            <div class="evo-col">
+              <div class="evo-head"><span class="evo-badge">NA PRÁTICA</span></div>
+              <div class="evo-desc">O que muda no dia a dia</div>
+              <div class="evo-buls" id="rEvo2"></div>
+            </div>
+          </div>
+          <p style="font-size:10px;color:rgba(255,255,255,.25);margin-top:8px">Resultados individuais variam.</p>
+        </div>
+
+        <!-- capa fixa à direita -->
+        <div style="position:sticky;top:90px;display:flex;flex-direction:column;align-items:center;gap:16px">
+          <img src="img/livro.webp" alt="Capa do livro Por Que Seu Corpo Não Muda?" width="200"
+            style="width:100%;max-width:220px;display:block;filter:drop-shadow(0 24px 48px rgba(0,0,0,.8))"
+            loading="lazy" decoding="async">
+          <a href="#oferta" style="display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#E83232,#C01818);color:#fff;font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:10px 18px;border-radius:8px;text-decoration:none;width:100%;box-shadow:0 4px 18px rgba(232,50,50,.3)">Ver oferta &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Os 11 capítulos (largura total) -->
+      <h3 style="font-size:clamp(17px,3.5vw,22px);font-weight:900;margin:32px 0 16px">Os 11 capítulos</h3>
+      <div class="ch-grid">
+        <div class="ch-card"><span class="ch-num">01</span><div class="ch-body"><strong>Estresse e cansaço mental</strong><span>Como seu estado de espírito afeta o corpo sem você perceber</span></div></div>
+        <div class="ch-card"><span class="ch-num">02</span><div class="ch-body"><strong>Comer menos nem sempre resolve</strong><span>Por que cortar comida demais pode travar o resultado</span></div></div>
+        <div class="ch-card"><span class="ch-num">03</span><div class="ch-body"><strong>Por que o corpo volta ao ponto inicial</strong><span>O ciclo de perda e recuperação de peso e como sair dele</span></div></div>
+        <div class="ch-card"><span class="ch-num">04</span><div class="ch-body"><strong>O corpo lê o que você repete</strong><span>Como o organismo interpreta tudo o que você faz no dia a dia</span></div></div>
+        <div class="ch-card"><span class="ch-num">05</span><div class="ch-body"><strong>Comida como mensagem</strong><span>Por que o mesmo cardápio não funciona igual para todo mundo</span></div></div>
+        <div class="ch-card"><span class="ch-num">06</span><div class="ch-body"><strong>Fome e energia</strong><span>Por que às vezes você come e continua com fome</span></div></div>
+        <div class="ch-card"><span class="ch-num">07</span><div class="ch-body"><strong>Sono e recuperação</strong><span>A causa do travamento que a maioria ignora</span></div></div>
+        <div class="ch-card"><span class="ch-num">08</span><div class="ch-body"><strong>Como o corpo economiza energia</strong><span>Por que o desempenho cai antes do físico mudar</span></div></div>
+        <div class="ch-card"><span class="ch-num">09</span><div class="ch-body"><strong>O que o treino realmente faz</strong><span>Como o músculo manda sinal de segurança para o corpo</span></div></div>
+        <div class="ch-card"><span class="ch-num">10</span><div class="ch-body"><strong>Quando o cardio ajuda e quando trava</strong><span>A diferença entre acelerar e sobrecarregar</span></div></div>
+        <div class="ch-card"><span class="ch-num">11</span><div class="ch-body"><strong>As três alavancas principais</strong><span>O que mais mexe com o resultado quando o corpo está travado</span></div></div>
+      </div>
+      <div style="text-align:center;margin-top:24px">
+        <a href="#oferta" class="cta-btn" style="display:inline-flex;width:auto;min-width:260px;border-radius:50px;padding:15px 32px">Quero entender o meu caso &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CASOS ── -->
+  <div class="sec" style="background:#0A0806">
+    
+    <div class="sec-in" style="position:relative;z-index:1;max-width:1080px">
+      <span class="slabel">Histórias reais de quem passou pelo mesmo</span>
+      <h2>Três casos.<br><span class="acc">Resultados reais.</span></h2>
+      <div class="caso-grid">
+        <article class="caso-card">
+          <div class="caso-header">
+            <span class="caso-badge">Resultado Travado</span>
+            <strong class="caso-name">Emilly Barros</strong>
+          </div>
+          <div class="caso-dados">
+            <span class="caso-label">O que ela vivia</span>
+            <ul class="caso-sinais">
+              <li>dificuldade de ganhar massa mesmo sendo consistente</li>
+              <li>energia instável ao longo da semana</li>
+              <li>cansaço crescente mesmo com rotina certa</li>
+            </ul>
+            <br>
+            <span class="caso-label">O que estava acontecendo</span>
+            <p class="caso-padrao-text">corpo respondendo menos por cansaço acumulado.</p>
+          </div>
+          <div class="caso-video" onclick="playVid(this)">
+            <video playsinline preload="none" aria-label="Depoimento de Emilly Barros" style="width:100%;display:block;max-height:280px;object-fit:cover">
+              <source src="img/v1.mp4" type="video/mp4">
+            </video>
+            <div class="vplay" aria-label="Reproduzir vídeo">
+              <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="27" cy="27" r="27" fill="rgba(232,50,50,.85)"/>
+                <polygon points="22,18 38,27 22,36" fill="#fff"/>
+              </svg>
+            </div>
+          </div>
+          <div class="caso-evolucao">
+            <img src="img/d2.jpg" alt="Resultado de Emilly Barros" loading="lazy" decoding="async">
+            <p class="caso-evolucao-label">O resultado</p>
+          </div>
+        </article>
+        <article class="caso-card">
+          <div class="caso-header">
+            <span class="caso-badge">Corpo Cansado de Tentar</span>
+            <strong class="caso-name">Guilherme Silveira</strong>
+          </div>
+          <div class="caso-dados">
+            <span class="caso-label">O que ele vivia</span>
+            <ul class="caso-sinais">
+              <li>corpo parado mesmo aumentando o esforço</li>
+              <li>resultado que não aparecia no espelho</li>
+              <li>trocava treino e dieta mas nada mudava</li>
+            </ul>
+            <br>
+            <span class="caso-label">O que estava acontecendo</span>
+            <p class="caso-padrao-text">corpo que aprendeu a não responder mais ao mesmo esforço.</p>
+          </div>
+          <div class="caso-video" onclick="playVid(this)">
+            <video playsinline preload="none" aria-label="Depoimento de Guilherme Silveira" style="width:100%;display:block;max-height:280px;object-fit:cover">
+              <source src="img/v2.mp4" type="video/mp4">
+            </video>
+            <div class="vplay" aria-label="Reproduzir vídeo">
+              <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="27" cy="27" r="27" fill="rgba(232,50,50,.85)"/>
+                <polygon points="22,18 38,27 22,36" fill="#fff"/>
+              </svg>
+            </div>
+          </div>
+          <div class="caso-evolucao">
+            <img src="img/d3.jpg" alt="Resultado de Guilherme Silveira" loading="lazy" decoding="async">
+            <p class="caso-evolucao-label">O resultado</p>
+          </div>
+        </article>
+        <article class="caso-card">
+          <div class="caso-header">
+            <span class="caso-badge">Ciclo de Vai e Volta</span>
+            <strong class="caso-name">Kenia Gallo</strong>
+          </div>
+          <div class="caso-dados">
+            <span class="caso-label">O que ela vivia</span>
+            <ul class="caso-sinais">
+              <li>anos de dietas muito restritivas</li>
+              <li>resultado aparecia e sumia sem explicação</li>
+              <li>difícil manter o que conquistava</li>
+            </ul>
+            <br>
+            <span class="caso-label">O que estava acontecendo</span>
+            <p class="caso-padrao-text">corpo desestabilizado por histórico longo de restrição.</p>
+          </div>
+          <div class="caso-video" onclick="playVid(this)">
+            <video playsinline preload="none" aria-label="Depoimento de Kenia Gallo" style="width:100%;display:block;max-height:280px;object-fit:cover">
+              <source src="img/v3.MP4" type="video/mp4">
+            </video>
+            <div class="vplay" aria-label="Reproduzir vídeo">
+              <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="27" cy="27" r="27" fill="rgba(232,50,50,.85)"/>
+                <polygon points="22,18 38,27 22,36" fill="#fff"/>
+              </svg>
+            </div>
+          </div>
+          <div class="caso-evolucao">
+            <img src="img/d4.jpg" alt="Resultado de Kenia Gallo" loading="lazy" decoding="async">
+            <p class="caso-evolucao-label">O resultado</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── OFERTA ── -->
+  <div class="offer-section" id="oferta">
+    <div class="offer-cont">
+      <span class="slabel" style="text-align:center;display:block;margin-bottom:16px">O livro</span>
+      <div class="offer-grid">
+        <div class="offer-left">
+          <h2 style="font-size:clamp(1.3rem,3vw,1.9rem)">Este livro foi feito para quem quer entender o que está <span class="acc">travando de verdade.</span></h2>
+          <p>136 páginas para você entender por que o corpo para de mudar e o que precisa mudar para ele responder de novo. Sem dieta para seguir. Sem treino para copiar.</p>
+          <div class="guarantee">
+            <div class="guarantee-icon">&#10003;</div>
+            <div class="guarantee-text">
+              <h4>Garantia de 30 dias</h4>
+              <p>Leia o livro inteiro. Se achar que não valeu, peça o dinheiro de volta. Sem burocracia.</p>
+            </div>
+          </div>
+          <ul class="offer-bullets">
+            <li>Reembolso total em até 30 dias, sem perguntas</li>
+            <li>Sem formulário. Sem processo complicado.</li>
+          </ul>
+          <p class="offer-delivery">Depois da compra: acesso imediato ao PDF e leitura em qualquer dispositivo</p>
+        </div>
+        <div class="offer-right">
+          <img src="img/livro.webp" alt="Por Que Seu Corpo Não Muda?" style="width:220px;display:block;margin:-160px auto 20px;position:relative;z-index:2;filter:drop-shadow(0 28px 56px rgba(0,0,0,.9))">
+          <p class="offer-tag">Livro digital em PDF, acesso imediato</p>
+          <p class="offer-old">R$ 97,00</p>
+          <p class="offer-cupom">Cupom ativo: R$50 off</p>
+          <p class="offer-price"><sup>R$</sup>47</p>
+          <p class="offer-price-note">Pagamento único, sem mensalidade</p>
+          <ul class="offer-includes">
+            <li>Livro completo em PDF com 136 páginas</li>
+            <li>11 capítulos mais Introdução e Conclusão</li>
+            <li>Acesso imediato depois do pagamento</li>
+            <li>Funciona no celular, tablet ou computador</li>
+          </ul>
+          <a href="https://pay.hotmart.com/J105842092Y?checkoutMode=10" class="cta-btn" style="margin-top:8px">COMPRAR POR R$47 &rarr;</a>
+          <p class="offer-guar-note">&#10003; 30 dias de garantia, reembolso total sem perguntas</p>
+          <div class="trust-row">
+            <span class="trust-item">Acesso imediato</span>
+            <span class="trust-item">Pagamento seguro</span>
+            <span class="trust-item">30 dias de garantia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── AUTOR 2 colunas ── -->
+  <div style="background:#0A0806;padding:6vh 0">
+    <div style="max-width:1080px;margin:0 auto;padding:0 24px">
+      <span class="slabel">Quem escreveu</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center" id="authorGrid">
+        <!-- foto -->
+        <div style="position:relative;border-radius:12px;overflow:hidden;max-height:560px">
+          <img src="img/fotoexpertfinal.webp" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;border-radius:12px" loading="lazy" decoding="async">
+        </div>
+        <!-- texto -->
+        <div>
+          <h2 style="font-size:clamp(2rem,5vw,3rem);font-weight:900;text-transform:uppercase;margin-bottom:4px">Breno <span class="acc">Moura</span></h2>
+          <p style="font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#E83232;margin-bottom:20px">Nutricionista especialista em metabolismo</p>
+          <div class="author-stats-g">
+            <div class="author-stat"><span class="author-stat-n">+13</span><span class="author-stat-l">Anos atendendo</span></div>
+            <div class="author-stat"><span class="author-stat-n">+5.350</span><span class="author-stat-l">Alunos</span></div>
+            <div class="author-stat"><span class="author-stat-n">+71</span><span class="author-stat-l">Títulos</span></div>
+            <div class="author-stat"><span class="author-stat-n">+273</span><span class="author-stat-l">Transformações</span></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px">
+            <span class="author-cred">4 especializações</span>
+            <span class="author-cred">Especialista em metabolismo</span>
+            <span class="author-cred">Neurociência</span>
+            <span class="author-cred">+300 vídeos no YouTube</span>
+            <span class="author-cred">+71 títulos no fisiculturismo</span>
+            <span class="author-cred">13 anos de consultório</span>
+          </div>
+          <p style="font-size:.95rem;color:rgba(240,240,240,.75);line-height:1.85;margin-bottom:16px">Nutricionista com mais de 13 anos de consultório e mais de 5 mil alunos acompanhados. Competiu por mais de uma década no fisiculturismo, o que significa que sabe na prática como o corpo muda e por que ele para de mudar.</p>
+          <p style="font-size:.95rem;color:rgba(240,240,240,.75);line-height:1.85">Escreveu este livro porque é o livro que gostaria de ter lido quando começou: quando fazia tudo certo e o resultado não vinha.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FAQ ── -->
+  <div style="background:#0A0806;padding:6vh 0 7vh;border-top:1px solid rgba(255,255,255,.04)">
+    <div style="max-width:1080px;margin:0 auto;padding:0 24px">
+      <span class="slabel">Dúvidas</span>
+      <h2 style="margin-bottom:28px">Perguntas frequentes</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 2px" id="faqGrid">
+
+        <!-- COLUNA 1 -->
+        <ul style="display:flex;flex-direction:column;gap:2px;list-style:none">
+          <li class="faq-item" style="border-radius:8px 0 0 0"><button class="faq-q" aria-expanded="false" aria-controls="faq1">Serve para emagrecer ou para ganhar massa?<span class="faq-icon">+</span></button><div class="faq-a" id="faq1">Para os dois. O livro fala sobre como o corpo para de responder, e isso acontece tanto em quem tenta perder gordura quanto em quem quer ganhar músculo. O mecanismo é o mesmo nos dois casos.</div></li>
+          <li class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="faq2">Preciso entender de nutrição para ler?<span class="faq-icon">+</span></button><div class="faq-a" id="faq2">Não. O livro foi escrito para quem não tem formação na área. Cada conceito é explicado do zero, com linguagem simples. Não precisa saber nada antes de começar.</div></li>
+          <li class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="faq3">Tem alguma dieta ou treino para seguir?<span class="faq-icon">+</span></button><div class="faq-a" id="faq3">Não. O objetivo do livro não é te dar mais uma coisa para seguir. É te ajudar a entender por que o que você já faz não está funcionando.</div></li>
+          <li class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="faq4">Funciona para quem tem problema de tireoide ou diabetes?<span class="faq-icon">+</span></button><div class="faq-a" id="faq4">O livro não substitui o acompanhamento do seu médico. Mas o conteúdo sobre como o corpo responde ao estresse, à alimentação e ao sono é útil para qualquer pessoa.</div></li>
+          <li class="faq-item" style="border-radius:0 0 0 8px"><button class="faq-q" aria-expanded="false" aria-controls="faq5">Funciona igual para homens e mulheres?<span class="faq-icon">+</span></button><div class="faq-a" id="faq5">Sim. Os mecanismos que fazem o corpo parar de responder são os mesmos. O livro não é voltado para um sexo específico.</div></li>
+        </ul>
+
+        <!-- COLUNA 2 -->
+        <ul style="display:flex;flex-direction:column;gap:2px;list-style:none">
+          <li class="faq-item" style="border-radius:0 8px 0 0"><button class="faq-q" aria-expanded="false" aria-controls="faq6">Tem versão física do livro?<span class="faq-icon">+</span></button><div class="faq-a" id="faq6">Sim. O livro foi publicado em versão impressa antes de existir em digital. Esta versão online tem o mesmo conteúdo completo, com acesso imediato depois da compra.</div></li>
+          <li class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="faq7">Quanto tempo leva para ler?<span class="faq-icon">+</span></button><div class="faq-a" id="faq7">Em torno de 3 a 4 horas. A maioria lê em dois ou três momentos. O texto é direto, sem enrolação.</div></li>
+          <li class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="faq8">Como recebo depois de comprar?<span class="faq-icon">+</span></button><div class="faq-a" id="faq8">O acesso é na hora. Depois do pagamento você recebe o PDF por e-mail. Funciona no celular, tablet ou computador, sem precisar instalar nada.</div></li>
+          <li class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="faq9">E se eu não gostar?<span class="faq-icon">+</span></button><div class="faq-a" id="faq9">Garantia de 30 dias. Pode ler o livro inteiro e, se achar que não valeu, peça o dinheiro de volta. Sem burocracia. Sem perguntas.</div></li>
+          <li class="faq-item" style="border-radius:0 0 8px 0"><button class="faq-q" aria-expanded="false" aria-controls="faq10">Serve para quem já tem nutricionista?<span class="faq-icon">+</span></button><div class="faq-a" id="faq10">Sim. O livro não substitui o acompanhamento profissional. Mas entender por que o seu corpo responde do jeito que responde ajuda você a tirar mais proveito de qualquer protocolo.</div></li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div style="max-width:1080px;margin:0 auto;padding:0 24px">
+      <p class="footer-brand">Breno <span class="acc">Moura</span></p>
+      <p class="footer-copy"><small>&copy; 2026 &middot; Por Que Seu Corpo Não Muda? &middot; Todos os direitos reservados<br>Produto digital, acesso imediato após pagamento, garantia de 30 dias</small></p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+var genero = '';
+var scores = {C:0, I:0, F:0, M:0};
+var qAtual = 0;
+var historico = [];
+
+var perguntas = [
+  {id:1,txt:"Qual frase descreve melhor o que você vive hoje?",opts:[
+    {t:"Treino e me cuido, mas o espelho quase não muda",e:"😐",s:{C:1,I:1,F:1,M:1}},
+    {t:"Perco peso mas fico sem forma, não fico definido",e:"😞",s:{I:2,M:2}},
+    {t:"Já tive resultado antes e agora nada mais funciona",e:"😔",s:{M:3}},
+    {t:"Meu problema é mais constância do que resultado travado",e:"🔄",s:{C:1}}
+  ]},
+  {id:2,txt:"Onde fica a gordura mais difícil de perder no seu corpo?",micro:"body",opts:[
+    {t:"Barriga e cintura",e:"🫃",s:{C:2,I:3}},
+    {t:"Flancos e laterais",e:"↔️",s:{C:3,I:1}},
+    {t:"Peito e parte de cima",e:"⬆️",s:{I:2,M:2}},
+    {t:"Corpo inteiro",e:"🔴",s:{F:3,M:1}}
+  ]},
+  {id:3,txt:"Como está sua energia ao longo do dia?",opts:[
+    {t:"Dependo de café ou pré-treino para funcionar",e:"☕",s:{F:2,M:2}},
+    {t:"Cai muito depois do almoço, parece que apago",e:"😴",s:{I:3}},
+    {t:"Muito irregular, dias bons e dias péssimos sem motivo",e:"📉",s:{C:2,M:1}},
+    {t:"É estável, não é o meu problema",e:"✅",s:{C:1}}
+  ]},
+  {id:4,txt:"Quando você come carboidrato (pão, arroz, massa), o que acontece?",opts:[
+    {t:"Incho rápido ou me sinto pesado logo depois",e:"😮‍💨",s:{I:2,F:2}},
+    {t:"Dá muito sono, parece que o corpo desliga",e:"😵",s:{I:3,M:1}},
+    {t:"Parece que engordo mais fácil nesses dias",e:"📈",s:{I:3}},
+    {t:"Não percebo diferença nenhuma",e:"🤷",s:{M:2}}
+  ]},
+  {id:5,txt:"Como você se sente depois de treinar?",micro:"effort",opts:[
+    {t:"Fico destruído por muito tempo, demora muito para recuperar",e:"🥵",s:{C:2,F:2}},
+    {t:"O rendimento oscila sem motivo aparente",e:"📊",s:{C:3,M:1}},
+    {t:"Treino bem mas o resultado no espelho não aparece na proporção",e:"😑",s:{I:2,M:2}},
+    {t:"Me recupero bem e o treino rende",e:"💪",s:{C:1}}
+  ]},
+  {id:6,txt:"Quando você tenta comer menos e se cuidar mais, o que acontece?",opts:[
+    {t:"Funciona no começo e depois trava",e:"🛑",s:{M:3}},
+    {t:"Fico sem energia e o treino vai por água abaixo",e:"🔋",s:{F:2,M:2}},
+    {t:"A fome explode, fico pensando em comida o dia todo",e:"🍔",s:{I:2,C:2}},
+    {t:"Funciona enquanto consigo manter",e:"👍",s:{C:1}}
+  ]},
+  {id:7,txt:"O que você percebe com mais clareza no seu caso?",separador:true,opts:[
+    {t:"Minha gordura piora quando fico estressado ou treino demais",e:"😤",s:{C:4}},
+    {t:"Minha gordura piora claramente quando como mais carboidrato",e:"🍞",s:{I:4}},
+    {t:"Meu corpo fica sempre inchado, pesado, e eu recupero mal",e:"🫧",s:{F:4}},
+    {t:"Meu corpo para de responder depois de um tempo em qualquer protocolo",e:"⏸️",s:{M:4}}
+  ]}
+];
+
+var perfis = {
+  C:{
+    badge:"CORPO EM MODO DE DEFESA",
+    bgColor:"rgba(232,50,50,.15)",
+    bdColor:"rgba(232,50,50,.5)",
+    nome:"Seu corpo está guardando, não gastando",
+    headline:"Quando a vida fica pesada demais estresse, treino excessivo, pouco descanso o corpo entra em modo de sobrevivência. Ele para de mudar para se proteger. E quanto mais você força, mais ele resiste.",
+    mech:"O cortisol (hormônio do estresse) sobe quando você vive pressionado. Com ele alto por muito tempo, o corpo entende que está em perigo e começa a guardar gordura, principalmente na barriga. Não é falta de força de vontade. É o corpo te protegendo do jeito que ele sabe.",
+    sigs:["gordura aumenta quando você está estressado ou treina demais","demora muito para se recuperar depois do treino","resultado vai e volta sem motivo aparente","barriga não cede mesmo com dieta em dia"],
+    sol:"Os capítulos 1, 3 e 7 do livro explicam exatamente isso. Você vai entender como o estresse afeta a gordura, por que descanso é tão importante quanto treino, e o que o sono tem a ver com o resultado parado.",
+    evo1:["Entende que o problema não é esforço, é o estado do corpo","Para de se culpar por não ter resultado","Descobre o que está causando o travamento"],
+    evo2:["Sabe o que mudar sem largar o treino","Aprende a recuperar o corpo de verdade","Começa a ter resultado sem forçar mais"]
+  },
+  I:{
+    badge:"COMIDA MANDANDO O SINAL ERRADO",
+    bgColor:"rgba(59,130,246,.12)",
+    bdColor:"rgba(59,130,246,.4)",
+    nome:"Sua alimentação está travando o resultado",
+    headline:"O carboidrato parou de funcionar como deveria. O que era combustível virou sinal para guardar gordura. E isso tem explicação não é fraqueza nem falta de disciplina.",
+    mech:"Quando você come muito carboidrato por muito tempo, o corpo perde a habilidade de usá-lo como energia. A insulina (hormônio que controla o açúcar no sangue) fica desregulada. O resultado: você incha, acumula gordura e tem dificuldade de ganhar músculo, mesmo comendo relativamente pouco.",
+    sigs:["incha ou fica pesado depois de comer carboidrato","gordura na barriga que não sai de jeito nenhum","difícil ganhar músculo sem acumular gordura junto","engorda fácil mesmo comendo pouco"],
+    sol:"Os capítulos 2, 5 e 6 do livro explicam como a comida age como mensagem para o corpo, e por que o mesmo cardápio não funciona igual para todo mundo.",
+    evo1:["Entende por que o mesmo plano não funciona para todos","Para de tratar carboidrato como inimigo sem motivo","Descobre como a comida manda mensagem para o seu corpo"],
+    evo2:["Ajusta o que come com base no que o corpo responde","Sai do ciclo de cortar tudo e compensar depois","Começa a usar a alimentação a seu favor"]
+  },
+  F:{
+    badge:"ALGO BLOQUEANDO POR DENTRO",
+    bgColor:"rgba(34,197,94,.1)",
+    bdColor:"rgba(34,197,94,.35)",
+    nome:"Seu corpo está travado por dentro mesmo que pareça normal",
+    headline:"Existe algo impedindo o resultado que os exames comuns não mostram. Seu corpo está em um estado que a maioria das pessoas não conhece e que o livro explica passo a passo.",
+    mech:"Quando o corpo fica inflamado por dentro (sem você sentir dor nem febre), ele para de crescer músculo e de queimar gordura normalmente. É como se tivesse uma parede invisível bloqueando o resultado. Você faz tudo certo, mas o corpo não responde na proporção.",
+    sigs:["corpo pesado além do que a gordura explica","demora muito para se recuperar e o sono não ajuda","resultado trava mesmo fazendo dieta e treino certinho","esforço não aparece no espelho como deveria"],
+    sol:"Os capítulos 7, 8 e 9 do livro explicam como o sono, o descanso e o estresse afetam diretamente o crescimento do músculo e a perda de gordura, e o que fazer quando isso está bloqueado.",
+    evo1:["Entende o que significa descanso de verdade, não só não treinar","Descobre por que trava mesmo fazendo tudo certo","Para de aumentar o esforço quando o problema é outro"],
+    evo2:["Usa o sono e a recuperação como parte da estratégia","Aprende quando o corpo precisa de menos, não de mais","Começa a ter resultado na proporção do esforço"]
+  },
+  M:{
+    badge:"CORPO QUE PAROU DE MUDAR",
+    nome:"Seu corpo aprendeu a não responder mais",
+    bgColor:"rgba(168,85,247,.1)",
+    bdColor:"rgba(168,85,247,.4)",
+    headline:"Você não está fazendo errado. Seu corpo simplesmente ficou bom demais em se adaptar ao que você faz. E aí ele parou de mudar. Isso tem nome, tem causa e tem solução.",
+    mech:"Quando você repete os mesmos ciclos de dieta e treino muitas vezes, o corpo aprende a gastar menos energia com as mesmas coisas. É uma estratégia de sobrevivência: ele economiza. Por isso o que funcionava antes parou de funcionar. Não é falta de disciplina. É adaptação.",
+    sigs:["o que funcionava antes parou de funcionar","cada nova tentativa dá menos resultado do que a anterior","resultado empaca sempre no começo ou depois de algumas semanas","mais esforço para cada vez menos resultado"],
+    sol:"Os capítulos 3, 4, 8, 10 e 11 do livro explicam como o corpo se adapta, o que fazer para quebrar esse ciclo, e quais são as três coisas que mais mudam o resultado quando o corpo está nesse estado.",
+    evo1:["Entende por que o mesmo protocolo para de funcionar com o tempo","Para de procurar a dieta perfeita quando o problema é adaptação","Descobre como o corpo lê o que você repete, não o que você faz às vezes"],
+    evo2:["Sabe o que mudar para o corpo responder de novo","Descobre as três coisas que mais mexem com o resultado","Para de recomeçar do zero e começa a ajustar com lógica"]
+  }
+};
+
+function goTo(id) {
+  document.querySelectorAll('.screen').forEach(function(el){el.classList.remove('on')});
+  var el = document.getElementById(id);
+  if (el) { el.classList.add('on'); window.scrollTo(0,0); }
+}
+
+function iniciarQuiz(g) {
+  genero = g;
+  scores = {C:0,I:0,F:0,M:0};
+  qAtual = 0;
+  historico = [];
+  document.getElementById('topbar').classList.add('on');
+  mostrarPergunta();
+}
+
+function mostrarPergunta() {
+  if (qAtual >= perguntas.length) { mostrarLoading(); return; }
+  var q = perguntas[qAtual];
+  atualizarProgresso();
+  var html = '<p class="q-title">' + q.txt + '</p><div class="q-opts">';
+  for (var i = 0; i < q.opts.length; i++) {
+    var o = q.opts[i];
+    html += '<button class="opt-btn" data-idx="' + i + '"><span>' + o.t + '</span>';
+    if (o.e) html += '<span class="opt-e">' + o.e + '</span>';
+    html += '</button>';
+  }
+  html += '</div>';
+  document.getElementById('qContent').innerHTML = html;
+  document.querySelectorAll('#qContent .opt-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      selecionarOpcao(parseInt(this.getAttribute('data-idx')));
+    });
+  });
+  goTo('sc-quiz');
+}
+
+function selecionarOpcao(i) {
+  var q = perguntas[qAtual];
+  var o = q.opts[i];
+  Object.keys(o.s).forEach(function(k){ scores[k] += o.s[k]; });
+  historico.push(qAtual);
+  qAtual++;
+  if (q.micro) mostrarMicro(q.micro);
+  else mostrarPergunta();
+}
+
+function mostrarMicro(tipo) {
+  var html = '<div class="micro-card">';
+  if (tipo === 'body') {
+    html += '<p class="micro-eyebrow">Mapeando onde o corpo guarda gordura</p>';
+    html += '<svg viewBox="0 0 120 200" width="100" height="170" style="margin:0 auto 12px;display:block" role="img" aria-label="Silhueta do corpo">'
+      + '<ellipse cx="60" cy="28" rx="20" ry="22" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
+      + '<rect x="38" y="50" width="44" height="54" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
+      + '<ellipse cx="60" cy="77" rx="19" ry="14" fill="rgba(232,50,50,.18)" stroke="rgba(232,50,50,.5)" stroke-width="1.5"/>'
+      + '<rect x="39" y="104" width="17" height="50" rx="6" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
+      + '<rect x="64" y="104" width="17" height="50" rx="6" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
+      + '<rect x="20" y="54" width="15" height="42" rx="6" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
+      + '<rect x="85" y="54" width="15" height="42" rx="6" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
+      + '<text x="60" y="81" text-anchor="middle" fill="rgba(232,50,50,.9)" font-size="7" font-weight="800">FOCO</text>'
+      + '</svg>';
+    html += '<p class="micro-hint">Região identificada. Calculando o padrão...</p>';
+  } else {
+    html += '<p class="micro-eyebrow">Comparando esforço e resultado</p>';
+    html += '<div style="display:flex;gap:16px;align-items:flex-end;justify-content:center;height:72px;margin-bottom:14px">'
+      + '<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:34px;background:rgba(232,50,50,.65);border-radius:4px 4px 0 0;height:68px"></div><span style="font-size:.58rem;color:rgba(255,255,255,.38)">Esforço</span></div>'
+      + '<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:34px;background:rgba(255,255,255,.15);border-radius:4px 4px 0 0;height:22px"></div><span style="font-size:.58rem;color:rgba(255,255,255,.38)">Resultado</span></div>'
+      + '</div>';
+    html += '<p class="micro-hint">Diferença detectada. Identificando a causa...</p>';
+  }
+  html += '<div class="micro-prog"><div class="micro-prog-fill" id="mpf"></div></div>';
+  html += '<p style="font-size:.6rem;color:rgba(255,255,255,.25);margin-top:10px">Avançando automaticamente...</p>';
+  html += '</div>';
+  document.getElementById('microContent').innerHTML = html;
+  goTo('sc-micro');
+  setTimeout(function(){ var el=document.getElementById('mpf'); if(el) el.style.width='100%'; }, 60);
+  setTimeout(function(){ mostrarPergunta(); }, 2200);
+}
+
+function goBack() {
+  if (historico.length === 0) {
+    document.getElementById('topbar').classList.remove('on');
+    goTo('sc-intro');
+    return;
+  }
+  qAtual = historico.pop();
+  mostrarPergunta();
+}
+
+function atualizarProgresso() {
+  var pct = Math.round((qAtual / perguntas.length) * 100);
+  var f = document.getElementById('prog-fill');
+  var t = document.getElementById('prog-txt');
+  if (f) f.style.width = pct + '%';
+  if (t) t.textContent = (qAtual+1) + '/' + perguntas.length;
+}
+
+function mostrarLoading() {
+  goTo('sc-load');
+  document.getElementById('topbar').classList.remove('on');
+  var pct = 0;
+  var msgs = ["Calculando seu resultado...","Comparando com outros padrões...","Quase pronto...","Finalizando..."];
+  var mIdx = 0;
+  var pEl = document.getElementById('loadPct');
+  var tEl = document.getElementById('loadTxt');
+  var iv = setInterval(function() {
+    pct += Math.random() * 10 + 3;
+    if (pct >= 100) { pct = 100; clearInterval(iv); setTimeout(mostrarResultado, 400); }
+    if (pEl) pEl.textContent = Math.floor(pct) + '%';
+    if (pct > 25 && mIdx < 1) { mIdx=1; if(tEl) tEl.textContent=msgs[1]; }
+    if (pct > 55 && mIdx < 2) { mIdx=2; if(tEl) tEl.textContent=msgs[2]; }
+    if (pct > 80 && mIdx < 3) { mIdx=3; if(tEl) tEl.textContent=msgs[3]; }
+  }, 150);
+}
+
+function mostrarResultado() {
+  var keys = Object.keys(scores);
+  var winner = keys.reduce(function(a,b){ return scores[a]>=scores[b]?a:b });
+  var p = perfis[winner];
+  var badge = document.getElementById('rBadge');
+  badge.textContent = p.badge;
+  badge.style.background = p.bgColor;
+  badge.style.border = '1px solid ' + p.bdColor;
+  badge.style.color = '#fff';
+  document.getElementById('rName').textContent = p.nome;
+  document.getElementById('rHeadline').textContent = p.headline;
+  document.getElementById('rMech').textContent = p.mech;
+  document.getElementById('rSol').textContent = p.sol;
+  var sigsEl = document.getElementById('rSigs');
+  sigsEl.innerHTML = '';
+  p.sigs.forEach(function(s){ sigsEl.innerHTML += '<div class="r-sig"><span class="r-dot"></span><span>'+s+'</span></div>'; });
+  var e1 = document.getElementById('rEvo1');
+  e1.innerHTML = '';
+  p.evo1.forEach(function(e){ e1.innerHTML += '<div class="evo-bul"><span class="evo-d"></span><span>'+e+'</span></div>'; });
+  var e2 = document.getElementById('rEvo2');
+  e2.innerHTML = '';
+  p.evo2.forEach(function(e){ e2.innerHTML += '<div class="evo-bul"><span class="evo-d"></span><span>'+e+'</span></div>'; });
+  document.getElementById('sc-result').classList.add('on');
+  goTo('sc-result');
+}
+
+function playVid(wrap) {
+  var vid = wrap.querySelector('video');
+  var src = vid.querySelector('source').getAttribute('src');
+  if (!vid.src || vid.src === window.location.href) {
+    vid.src = src;
+  }
+  wrap.classList.add('playing');
+  vid.play();
+}
+
+function skipToPV() {
+  scores = {C:0,I:0,F:0,M:0};
+  genero = 'm';
+  mostrarResultado();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(el) {
+        el.classList.remove('open');
+        el.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+});
+</script>
+<script>
+  const link = 'https://meubackredirect.com.br';
+
+  function setBackRedirect(url) {
+    let urlBackRedirect = url;
+    urlBackRedirect =
+      urlBackRedirect.trim() +
+      (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
+      document.location.search.replace('?', '').toString();
+
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+
+    window.addEventListener('popstate', () => {
+      setTimeout(() => { location.href = urlBackRedirect; }, 1);
+    });
+  }
+
+  setBackRedirect(link);
+</script>
+<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
+</body>
+</html>
