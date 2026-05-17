@@ -1096,24 +1096,19 @@ function selecionarOpcao(i) {
   _sessionAnswers['q'+(qAtual+1)] = i;
   historico.push(qAtual);
   qAtual++;
-  if (q.micro) mostrarMicro(q.micro);
+  if (q.micro) mostrarMicro(q.micro, i);
   else mostrarPergunta();
 }
 
-function mostrarMicro(tipo) {
+function mostrarMicro(tipo, optIdx) {
   var html = '<div class="micro-card">';
   if (tipo === 'body') {
     html += '<p class="micro-eyebrow">Mapeando onde o corpo guarda gordura</p>';
-    html += '<svg viewBox="0 0 120 200" width="100" height="170" style="margin:0 auto 12px;display:block" role="img" aria-label="Silhueta do corpo">'
-      + '<ellipse cx="60" cy="28" rx="20" ry="22" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
-      + '<rect x="38" y="50" width="44" height="54" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
-      + '<ellipse cx="60" cy="77" rx="19" ry="14" fill="rgba(232,50,50,.18)" stroke="rgba(232,50,50,.5)" stroke-width="1.5"/>'
-      + '<rect x="39" y="104" width="17" height="50" rx="6" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
-      + '<rect x="64" y="104" width="17" height="50" rx="6" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
-      + '<rect x="20" y="54" width="15" height="42" rx="6" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
-      + '<rect x="85" y="54" width="15" height="42" rx="6" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>'
-      + '<text x="60" y="81" text-anchor="middle" fill="rgba(232,50,50,.9)" font-size="7" font-weight="800">FOCO</text>'
-      + '</svg>';
+    var imgNum = (optIdx != null ? optIdx + 1 : 1);
+    html += '<picture>'
+      + '<source srcset="img/c2m' + imgNum + '.webp" type="image/webp">'
+      + '<img src="img/c2m' + imgNum + '.png" alt="Silhueta do corpo" style="width:130px;display:block;margin:0 auto 12px">'
+      + '</picture>';
     html += '<p class="micro-hint">Região identificada. Calculando o padrão...</p>';
   } else {
     html += '<p class="micro-eyebrow">Comparando esforço e resultado</p>';
