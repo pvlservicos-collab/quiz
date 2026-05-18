@@ -7,7 +7,8 @@
       "Read(//c/Users/pedro/Desktop/BRENO EMAGRECIMENTO/quiz/NR>=420 && NR<=570 {printf \"%d: %s/**)",
       "Bash(node _fix5.js)",
       "Bash(node _fix7.js)",
-      "Read(//c/Users/pedro/Downloads/**)"
+      "Read(//c/Users/pedro/Downloads/**)",
+      "WebFetch(domain:api.github.com)"
     ]
   }
 }
