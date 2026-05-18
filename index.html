@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#080808">
 <title>Por Que Seu Corpo Não Muda? Breno Moura</title>
 <meta name="description" content="7 perguntas para descobrir por que seu corpo parou de mudar mesmo quando você está fazendo de tudo.">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1129870485803299');
@@ -15,6 +15,7 @@ fbq('track','PageView');
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1129870485803299&ev=PageView&noscript=1"/></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://mpc-prod-25-s6uit34pua-wl.a.run.app">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@900&display=swap" rel="stylesheet"></noscript>
 <style>
@@ -442,7 +443,7 @@ footer{background:#000;padding:36px 0;text-align:center}
     <div class="ig-pill">
       <div class="ig-av-wrap">
         <img src="img/fotoinsta.webp" alt="Dr. Breno Moura" class="ig-av-img"
-          width="48" height="48" fetchpriority="low" decoding="async" loading="eager"
+          width="48" height="48" fetchpriority="low" decoding="async" loading="lazy"
           onerror="this.style.display='none'">
       </div>
       <div class="ig-info">
@@ -717,10 +718,6 @@ footer{background:#000;padding:36px 0;text-align:center}
               </svg>
             </div>
           </div>
-          <div class="caso-evolucao">
-            <img src="img/d2.jpg" alt="Resultado de Emilly Barros" loading="lazy" decoding="async">
-            <p class="caso-evolucao-label">O resultado</p>
-          </div>
         </article>
         <article class="caso-card">
           <div class="caso-header">
@@ -749,10 +746,6 @@ footer{background:#000;padding:36px 0;text-align:center}
               </svg>
             </div>
           </div>
-          <div class="caso-evolucao">
-            <img src="img/d3.jpg" alt="Resultado de Guilherme Silveira" loading="lazy" decoding="async">
-            <p class="caso-evolucao-label">O resultado</p>
-          </div>
         </article>
         <article class="caso-card">
           <div class="caso-header">
@@ -772,7 +765,7 @@ footer{background:#000;padding:36px 0;text-align:center}
           </div>
           <div class="caso-video" onclick="playVid(this)">
             <video playsinline preload="none" aria-label="Depoimento de Kenia Gallo" style="width:100%;display:block;max-height:280px;object-fit:cover">
-              <source src="img/v3.MP4" type="video/mp4">
+              <source src="img/v3.mp4" type="video/mp4">
             </video>
             <div class="vplay" aria-label="Reproduzir vídeo">
               <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -780,10 +773,6 @@ footer{background:#000;padding:36px 0;text-align:center}
                 <polygon points="22,18 38,27 22,36" fill="#fff"/>
               </svg>
             </div>
-          </div>
-          <div class="caso-evolucao">
-            <img src="img/d4.jpg" alt="Resultado de Kenia Gallo" loading="lazy" decoding="async">
-            <p class="caso-evolucao-label">O resultado</p>
           </div>
         </article>
       </div>
