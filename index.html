@@ -150,19 +150,18 @@ h2{font-size:clamp(1.5rem,3.8vw,2.4rem);font-weight:900;line-height:1.1;letter-s
 .caso-header{padding:18px 22px 14px;border-bottom:1px solid rgba(255,255,255,.06)}
 .caso-badge{display:inline-block;background:rgba(232,50,50,.1);border:1px solid rgba(232,50,50,.25);color:#E83232;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;padding:3px 9px;margin-bottom:7px}
 .caso-name{font-size:.98rem;font-weight:800;color:#fff;display:block}
-.caso-dados{padding:14px 22px;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.01)}
+.caso-dados{padding:14px 22px;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.01);flex:1}
 .caso-label{font-size:.56rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,240,240,.22);margin-bottom:6px;display:block}
 .caso-sinais li{font-size:.78rem;color:rgba(240,240,240,.6);line-height:1.45;display:flex;gap:7px;margin-bottom:4px}
 .caso-sinais li::before{content:"·";color:#E83232;flex-shrink:0}
 .caso-padrao-text{font-size:.8rem;color:rgba(240,240,240,.65);line-height:1.6;font-style:italic}
 .caso-video{width:100%;background:#000;position:relative;cursor:pointer}
-.caso-video video{width:100%;display:block;max-height:280px;object-fit:cover}
-.caso-video .vplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.38);transition:background .2s}
-.caso-video .vplay:hover{background:rgba(0,0,0,.18)}
+.caso-video video{width:100%;display:block;aspect-ratio:9/16;object-fit:cover}
+.caso-video .vplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);transition:background .2s}
+.caso-video .vplay:hover{background:rgba(0,0,0,.15)}
 .caso-video .vplay svg{filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
 .caso-video.playing .vplay{display:none}
-.caso-evolucao img{width:100%;display:block}
-.caso-evolucao-label{padding:7px 14px;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,240,240,.22);background:rgba(0,0,0,.6)}
+@media(max-width:599px){.caso-grid{padding:0 12px}}
 
 .author-section{background:#0d0d0d;padding:4vh 0}
 .author-grid{display:grid;grid-template-columns:1fr;gap:36px;align-items:start}
@@ -708,7 +707,7 @@ footer{background:#000;padding:36px 0;text-align:center}
             <p class="caso-padrao-text">corpo respondendo menos por cansaço acumulado.</p>
           </div>
           <div class="caso-video" onclick="playVid(this)">
-            <video playsinline preload="none" aria-label="Depoimento de Emilly Barros" style="width:100%;display:block;max-height:280px;object-fit:cover">
+            <video playsinline preload="metadata" aria-label="Depoimento de Emilly Barros">
               <source src="img/v1.mp4" type="video/mp4">
             </video>
             <div class="vplay" aria-label="Reproduzir vídeo">
@@ -736,7 +735,7 @@ footer{background:#000;padding:36px 0;text-align:center}
             <p class="caso-padrao-text">corpo que aprendeu a não responder mais ao mesmo esforço.</p>
           </div>
           <div class="caso-video" onclick="playVid(this)">
-            <video playsinline preload="none" aria-label="Depoimento de Guilherme Silveira" style="width:100%;display:block;max-height:280px;object-fit:cover">
+            <video playsinline preload="metadata" aria-label="Depoimento de Guilherme Silveira">
               <source src="img/v2.mp4" type="video/mp4">
             </video>
             <div class="vplay" aria-label="Reproduzir vídeo">
@@ -764,7 +763,7 @@ footer{background:#000;padding:36px 0;text-align:center}
             <p class="caso-padrao-text">corpo desestabilizado por histórico longo de restrição.</p>
           </div>
           <div class="caso-video" onclick="playVid(this)">
-            <video playsinline preload="none" aria-label="Depoimento de Kenia Gallo" style="width:100%;display:block;max-height:280px;object-fit:cover">
+            <video playsinline preload="metadata" aria-label="Depoimento de Kenia Gallo">
               <source src="img/v3.mp4" type="video/mp4">
             </video>
             <div class="vplay" aria-label="Reproduzir vídeo">
@@ -1188,13 +1187,15 @@ function mostrarResultado() {
   goTo('sc-result');
 }
 
+document.querySelectorAll('.caso-video video').forEach(function(vid) {
+  vid.addEventListener('loadedmetadata', function() { vid.currentTime = 1; });
+});
+
 function playVid(wrap) {
   var vid = wrap.querySelector('video');
-  var src = vid.querySelector('source').getAttribute('src');
-  if (!vid.src || vid.src === window.location.href) {
-    vid.src = src;
-  }
   wrap.classList.add('playing');
+  vid.controls = true;
+  vid.currentTime = 0;
   vid.play();
 }
 
@@ -1219,5 +1220,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
+
 </body>
 </html>
